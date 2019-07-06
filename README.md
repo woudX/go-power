@@ -6,10 +6,12 @@ Go-Power
 A lightly tool library for go developer, which provider lots of useful tool to make coding easier, faster and feel more comfortable
 
 It contains :
-- container : provide more function to operate containers in golang, for example: slice
+- container : provide a series of method to make containers operator easy, such as slice, etc.
 - converter : provide common used type & other convert method
 - mathex : provide common used math/calculate functions
-- ttype : provide reflect method to make interface{} more easy to use
+- ttype : provide reflection based internal type system to process interface
+- powerr : provider a simple error library which can save dict and stack
+- reflector : provider common used reflect method
 
 Example:
 
