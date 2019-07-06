@@ -6,7 +6,7 @@ Go-Power
 A lightweight tools library for golang developer, which provider lots of useful tools to make coding easier, faster and feel more comfortable
 
 It contains :
-- **container** : provide a series of method to make containers operator easy, such as slice, etc.
+- **container** : provide a series of method to make containers operator more easily, such as slice, etc.
 - **converter** : provide common used type & other convert method
 - **mathex** : provide common used math/calculate functions
 - **ttype** : provide reflection based internal type system to process interface
@@ -17,7 +17,7 @@ It contains :
 
 ### container
 
-GoPower provide a series of methods like c++ to operate slice, include remove, find, etc. They are all named with SliceXXX, for example:
+GoPower provide a series of methods to operate slice, include remove, find, etc. They are all named with SliceXXX, for example:
 
 ```go
 //  Find data pos in slice
