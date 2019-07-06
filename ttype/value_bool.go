@@ -25,6 +25,11 @@ func NewValueBoolIf(val interface{}) (valIf ValueIf, err error) {
 	return NewValueBool(val)
 }
 
+//	Get ValueBool Value in interface mode
+func (p *ValueBool) Value() (interface{}, error) {
+	return p.val, nil
+}
+
 //	ValueBool Equal Method
 func (p *ValueBool) Equal(rhs ValueIf) (ValueIf, error) {
 	rhsVal, err := rhs.ToBool()
@@ -35,7 +40,18 @@ func (p *ValueBool) Equal(rhs ValueIf) (ValueIf, error) {
 	return NewValueBool(p.val == rhsVal.val)
 }
 
+//	ValueBool to Int64
+func (p *ValueBool) ToInt64() (*ValueInt64, error) {
+	return NewValueInt64(p.val)
+}
+
 //	ValueBool to Bool
 func (p *ValueBool) ToBool() (*ValueBool, error) {
 	return NewValueBool(p.val)
 }
+
+//	ValueBool to Float64
+func (p *ValueBool) ToFloat64() (*ValueFloat64, error) {
+	return NewValueFloat64(p.val)
+}
+

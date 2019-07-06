@@ -12,19 +12,29 @@ func TestSliceFind(t *testing.T) {
 		Expect int
 	}{
 		{
-			Input: []interface{}{true, 2, 3456, 233},
-			Target: 3456,
-			Expect: 2,
+			Input: []interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 22,
+			Expect: 3,
 		},
 		{
-			Input: []interface{}{true, 1, 3456, 233, false},
-			Target: true,
-			Expect: 1,
+			Input: []interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: "string-A",
+			Expect: 4,
 		},
 		{
-			Input: []interface{}{true, 1, 3456, 233},
+			Input: []interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
 			Target: -33,
 			Expect: -1,
+		},
+		{
+			Input: []interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.1,
+			Expect: 7,
+		},
+		{
+			Input: []interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.111,
+			Expect: 9,
 		},
 	}
 
@@ -65,6 +75,138 @@ func TestSliceFindString(t *testing.T) {
 
 	for _, caseItem := range testCase {
 		pos, err := SliceFindString(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+
+func TestSliceFindInt64(t *testing.T) {
+	testCase := []struct {
+		Input []int64
+		Target int64
+		Expect int
+	}{
+		{
+			Input: []int64{113,444,-321,5,0},
+			Target: 444,
+			Expect: 1,
+		},
+		{
+			Input: []int64{113,444,-321,5,0},
+			Target: -321,
+			Expect: 2,
+		},
+		{
+			Input: []int64{113,444,-321,5,0},
+			Target: -3,
+			Expect: -1,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		pos, err := SliceFindInt64(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+func TestSliceFindInt(t *testing.T) {
+	testCase := []struct {
+		Input []int
+		Target int
+		Expect int
+	}{
+		{
+			Input: []int{113,444,-321,5,0},
+			Target: 444,
+			Expect: 1,
+		},
+		{
+			Input: []int{113,444,-321,5,0},
+			Target: -321,
+			Expect: 2,
+		},
+		{
+			Input: []int{113,444,-321,5,0},
+			Target: -3,
+			Expect: -1,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		pos, err := SliceFindInt(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+func TestSliceFindFloat32(t *testing.T) {
+	testCase := []struct {
+		Input []float32
+		Target float32
+		Expect int
+	}{
+		{
+			Input: []float32{113.33,444.44,-321.21,5.0,5,0},
+			Target: 444.44,
+			Expect: 1,
+		},
+		{
+			Input: []float32{113.33,444.44,-321.21,5.0,5,5.0001, 0},
+			Target: 5,
+			Expect: 3,
+		},
+		{
+			Input: []float32{113.33,444.44,-321.21,5.0,5,5.0001, 0},
+			Target: 5.0001,
+			Expect: 5,
+		},
+		{
+			Input: []float32{113.33,444.44,-321.21,5.0,5,5.0001, 0},
+			Target: -321.2,
+			Expect: -1,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		pos, err := SliceFindFloat32(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+
+func TestSliceFindFloat64(t *testing.T) {
+	testCase := []struct {
+		Input []float64
+		Target float64
+		Expect int
+	}{
+		{
+			Input: []float64{113.33,444.44,-321.21,5.0,5,0},
+			Target: 444.44,
+			Expect: 1,
+		},
+		{
+			Input: []float64{113.33,444.44,-321.21,5.0,5,5.0001, 0},
+			Target: 5,
+			Expect: 3,
+		},
+		{
+			Input: []float64{113.33,444.44,-321.21,5.0,5,5.0001, 0},
+			Target: 5.0001,
+			Expect: 5,
+		},
+		{
+			Input: []float64{113.33,444.44,-321.21,5.0,5,5.0001, 0},
+			Target: -321.2,
+			Expect: -1,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		pos, err := SliceFindFloat64(caseItem.Input, caseItem.Target)
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, pos)
 	}

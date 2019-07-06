@@ -23,14 +23,15 @@ func SliceFind(sliceObj []interface{}, findObj interface{}) (pos int, err error)
 			return -1, err
 		}
 
+		//	If can't operate just skip, becuase can't operate means not equal
 		result, err := ttype.OpEqual.Operate(tmpFindObjValIf, valIf)
 		if err != nil {
-			return -1, nil
+			continue
 		}
 
 		finded, err := ttype.TryGetBoolFromValueIf(result)
 		if err != nil {
-			return -1, nil
+			return -1, err
 		}
 
 		if finded {

@@ -27,6 +27,11 @@ func NewValueInt64If(val interface{}) (valIf ValueIf, err error) {
 	return NewValueInt64(val)
 }
 
+//	Get ValueInt64 Value in interface mode
+func (p *ValueInt64) Value() (interface{}, error) {
+	return p.val, nil
+}
+
 //	ValueInt64 Equal Method
 func (p *ValueInt64) Equal(rhs ValueIf) (ValueIf, error) {
 	rhsVal, err := rhs.ToInt64()
@@ -45,4 +50,9 @@ func (p *ValueInt64) ToInt64() (*ValueInt64, error) {
 //	ValueInt64 to Bool
 func (p *ValueInt64) ToBool() (*ValueBool, error) {
 	return NewValueBool(p.val)
+}
+
+//	ValueInt64 to Float64
+func (p *ValueInt64) ToFloat64() (*ValueFloat64, error) {
+	return NewValueFloat64(p.val)
 }

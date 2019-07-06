@@ -12,7 +12,9 @@ const (
 const (
 	PriorityLowest = iota
 	PriorityBool
+	PriorityString
 	PriorityInt64
+	PriorityFloat64
 	PriorityHighest
 )
 
@@ -31,6 +33,11 @@ func (p *ValueBasic) Priority() int {
 //	Return Type
 func (p *ValueBasic) Type() ValueType {
 	return p.valueType
+}
+
+//	Return Value
+func (p *ValueBasic) Value() (interface{}, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.Value))
 }
 
 //	Operations
@@ -55,7 +62,23 @@ func (p *ValueBasic) ToInt64() (*ValueInt64, error) {
 	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.ToInt64))
 }
 
+//	ToFloat64
+func (p *ValueBasic) ToFloat64() (*ValueFloat64, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.ToFloat64))
+}
+
 //	ToBool
 func (p *ValueBasic) ToBool() (*ValueBool, error) {
 	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.ToBool))
 }
+
+//	ToString
+func (p *ValueBasic) ToString() (*ValueString, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.ToString))
+}
+
+//	ToInterface
+func (p *ValueBasic) ToInterface() (interface{}, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.ToInterface))
+}
+

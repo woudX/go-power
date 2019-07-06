@@ -14,6 +14,10 @@ func LoadValueFromInterface(val interface{}) (valIf ValueIf, err error) {
 		valIf, err = NewValueInt64(val)
 	case reflect.Bool:
 		valIf, err = NewValueBool(val)
+	case reflect.String:
+		valIf, err = NewValueString(val)
+	case reflect.Float32, reflect.Float64:
+		valIf, err = NewValueFloat64(val)
 	default:
 		err = powerr.New(powerr.ErrNotSupportValueType).StoreKV("Type", reflect.TypeOf(val).Kind()).StoreStack()
 	}
