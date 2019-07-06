@@ -1,9 +1,12 @@
 package ttype
 
 import (
-	"fmt"
 	"gopower/gp_error"
 	"gopower/gp_reflect"
+)
+
+const (
+	FuncName = "func_name"
 )
 
 type BasicType struct {
@@ -18,15 +21,15 @@ func Type(p *BasicType) ValueType {
 //	Operations
 //	Equal
 func (p *BasicType) Equal(rhs ValueIf) (ValueIf, error) {
-	return nil, gp_error.New(fmt.Sprint(gp_error.ErrInfoUnImplementFunction, gp_reflect.GetFunctionName(p.Equal)))
+	return nil, gp_error.New(gp_error.ErrInfoUnImplementFunction).StoreKV(FuncName, gp_reflect.GetFunctionName(p.Equal))
 }
 
 //	Larger
 func (p *BasicType) Larger(rhs ValueIf) (ValueIf, error) {
-	return nil, gp_error.New(fmt.Sprintf(gp_error.ErrInfoUnImplementFunction, gp_reflect.GetFunctionName(p.Larger)))
+	return nil, gp_error.New(gp_error.ErrInfoUnImplementFunction).StoreKV(FuncName, gp_reflect.GetFunctionName(p.Larger))
 }
 
 //	Less
 func (p *BasicType) Less(rhs ValueIf) (ValueIf, error) {
-	return nil, gp_error.New(fmt.Sprintf(gp_error.ErrInfoUnImplementFunction, gp_reflect.GetFunctionName(p.Less)))
+	return nil, gp_error.New(gp_error.ErrInfoUnImplementFunction).StoreKV(FuncName, gp_reflect.GetFunctionName(p.Less))
 }
