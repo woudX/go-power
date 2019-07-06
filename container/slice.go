@@ -11,14 +11,14 @@ func SliceFind(sliceObj []interface{}, findObj interface{}) (pos int, err error)
 	pos = -1
 
 	//	Convert findObj to ValueIf
-	tmpFindObjValIf, err := ttype.LoadValueFromInterface(findObj)
+	tmpFindObjValIf, err := ttype.LoadValueIfFromInterface(findObj)
 	if err != nil {
 		return -1, err
 	}
 
 	//	Traversal each obj in slice and convert to ValueIf, use operator to check equal
 	for idx, item := range sliceObj {
-		valIf, err := ttype.LoadValueFromInterface(item)
+		valIf, err := ttype.LoadValueIfFromInterface(item)
 		if err != nil {
 			return -1, err
 		}

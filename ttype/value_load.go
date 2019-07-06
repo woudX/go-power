@@ -5,9 +5,9 @@ import (
 	"reflect"
 )
 
-//	LoadValueFromInterface can load data from interface, check type and create library internal ValueType
+//	LoadValueIfFromInterface can load data from interface, check type and create library internal ValueType
 //	These types can be used to compare and calculate
-func LoadValueFromInterface(val interface{}) (valIf ValueIf, err error) {
+func LoadValueIfFromInterface(val interface{}) (valIf ValueIf, err error) {
 	switch reflect.TypeOf(val).Kind() {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64, reflect.Uint, reflect.Uint8,
 		reflect.Uint16, reflect.Uint32, reflect.Uint64:

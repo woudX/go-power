@@ -66,3 +66,26 @@ minVal, err := mathex.Min(3.14, -5, 20.3, 55773, true)
 sumVal, err := mathex.Sum(3.14, -5, 20.3, 55773)
 
 ```
+
+- ttype
+
+```go
+// GoPower use reflection to realize an internal type system called ttype. It often used for another part
+// , but it can also be used directly. Most important type is ValueIf, it's a interface which support many 
+// useful method, for example:
+
+//  Create ValueIf from interface
+float64ValIf, err := ttype.LoadValueIfFromInterface(3.14) 
+int64ValIf, err := ttype.LoadValueIfFromInterface(3) 
+
+//  Get ValIf info
+float64ValIf.Type() // float64
+int64ValIf.Type() // int64 
+
+//  Convert and get value
+cvtInt64Val := float64ValIf.ToInt64().Value() // 3.14 --> 3 
+
+//  Do equal operator and get result
+resultValIf := ttype.OpEqual.Operate(float64ValIf, int64ValIf)
+boolResult, err := ttype.TryGetBoolFromValueIf(resultValIf) // boolResult is bool = false
+```

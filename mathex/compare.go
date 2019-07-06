@@ -5,12 +5,12 @@ import "gopower/ttype"
 //	Compare two interface value and return result, return -1 if lVal larger than rVal, return 0 if equal and
 //	return 1 if lVal smaller than rVal
 func Compare(lVal interface{}, rVal interface{}) (cmpResult int, err error) {
-	lValIf, err := ttype.LoadValueFromInterface(lVal)
+	lValIf, err := ttype.LoadValueIfFromInterface(lVal)
 	if err != nil {
 		return 0, err
 	}
 
-	rValIf, err := ttype.LoadValueFromInterface(rVal)
+	rValIf, err := ttype.LoadValueIfFromInterface(rVal)
 	if err != nil {
 		return 0, err
 	}
