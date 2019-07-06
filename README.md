@@ -1,7 +1,7 @@
 Go-Power
 ===
 
-> Library is under developing now, I desire to use lib after release version published
+> Library is under developing now,it's better to use library after release version published
 
 A lightweight tools library for golang developer, which provider lots of useful tools to make coding easier, faster and feel more comfortable
 
@@ -13,7 +13,7 @@ It contains :
 - **powerr** : provider a simple error library which can save dict and stack
 - **reflector** : provider common used reflect method
 
-## Using Examples
+## Examples
 
 ### container
 
