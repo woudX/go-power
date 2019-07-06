@@ -16,20 +16,30 @@ Example:
 - container
 
 ```go
-//  If you want find string exist in slice:
-pos, err := container.SliceFind([]string{"string", "int", "bool"}, "bool")
 
-//  You can even find object exist in interface slice:
+// GoPower provide a series of methods like c++ to operate slice, include remove, find ...
+// They are all named with SliceXXX, for example:
+
+//  Find data pos in slice
 pos, err := container.SliceFind([]interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111}, 3.1)
 
-//  If need speed, suggest use non-reflection function:
+//  Find data pos in slice (non-reflect version)
 pos, err := container.SliceFindString([]string{"string", "int", "bool"}, "bool")
+pos, err := container.SliceFindInt64([]int64{111,222,333}, 222)
+
+//  Remove data from slice
+rmSlice, err := container.SliceRemove([]interface{"string", "int", "bool"}, "int")
+
+//  Remove data from slice (non-reflect version)
+rmSlice, err := container.SliceRemoveString([]string{"string", "int", "bool"}, "int")
 
 ```
 
 - converter
 
 ```go
+//  Golang type convert is an annoying problem, so this library provide a series of common used methods to help
+//  develop do converter
 
 //  Try converter any data to all kinds of data
 intVal, err := converter.ToInt(interface{})
@@ -43,6 +53,8 @@ stringVal, err := converter.ToString(interface{})
 - mathex
 
 ```go
+//  GoPower provide more powerful math method, which can support any value do compare/max/min/sum ... operator 
+
 //  Compare to interface value
 cmpResult, err := mathex.Compare(3.14, -5)
 
@@ -52,4 +64,5 @@ minVal, err := mathex.Min(3.14, -5, 20.3, 55773, true)
 
 //  Sum interface value
 sumVal, err := mathex.Sum(3.14, -5, 20.3, 55773)
+
 ```

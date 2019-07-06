@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e3a396e-e64d-4d2d-8958-548fb0e8585e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ttype/value_float64.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ttype/value_string.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/container/slice.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/slice.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/container/slice_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/slice_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/converter/data_converter.go" beforeDir="false" afterPath="$PROJECT_DIR$/converter/data_converter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mathex/compare.go" beforeDir="false" afterPath="$PROJECT_DIR$/mathex/compare.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ttype/valueIf.go" beforeDir="false" afterPath="$PROJECT_DIR$/ttype/valueIf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ttype/value_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/ttype/value_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ttype/value_bool.go" beforeDir="false" afterPath="$PROJECT_DIR$/ttype/value_bool.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ttype/value_int64.go" beforeDir="false" afterPath="$PROJECT_DIR$/ttype/value_int64.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ttype/value_load.go" beforeDir="false" afterPath="$PROJECT_DIR$/ttype/value_load.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/github.com/stretchr/testify.a" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/mathex/compare.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="891">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
             </state>
           </provider>
         </entry>
@@ -56,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -65,8 +53,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="135">
-                <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <first_editor relative-caret-position="432">
+                <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
               </first_editor>
               <second_editor />
             </state>
@@ -95,16 +83,7 @@
         <entry file="file://$PROJECT_DIR$/ttype/value_float64.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="810">
-              <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ttype/value_basic.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+              <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -205,21 +184,6 @@
             <path>
               <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
               <item name="gopower" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gopower" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gopower" type="462c0819:PsiDirectoryNode" />
-              <item name="mathex" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gopower" type="462c0819:PsiDirectoryNode" />
-              <item name="ttype" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -325,7 +289,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32961783" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32961783" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32961783" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -475,7 +439,7 @@
     <entry file="file://$PROJECT_DIR$/ttype/value_float64.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
-          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -510,22 +474,25 @@
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mathex/compare.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="891">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/windows_amd64/github.com/stretchr/testify.a">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="135">
-            <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <first_editor relative-caret-position="432">
+            <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           </first_editor>
           <second_editor />
         </state>
