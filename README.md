@@ -3,7 +3,7 @@ Go-Power
 
 > Library is under developing now, I desire to use lib after release version published
 
-A lightly tool library for go developer, which provider lots of useful tool to make coding easier, faster and feel more comfortable
+A lightweight tools library for golang developer, which provider lots of useful tools to make coding easier, faster and feel more comfortable
 
 It contains :
 - **container** : provide a series of method to make containers operator easy, such as slice, etc.
