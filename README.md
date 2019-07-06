@@ -15,7 +15,7 @@ It contains :
 
 ## Using Examples
 
-### 
+### container
 
 GoPower provide a series of methods like c++ to operate slice, include remove, find, etc. They are all named with SliceXXX, for example:
 
