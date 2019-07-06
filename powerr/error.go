@@ -1,5 +1,5 @@
 // Package errors implements functions to manipulate errors.
-package gp_error
+package powerr
 
 import (
 	"fmt"

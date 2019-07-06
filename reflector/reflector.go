@@ -1,4 +1,4 @@
-package gp_reflect
+package reflector
 
 import (
 	"reflect"

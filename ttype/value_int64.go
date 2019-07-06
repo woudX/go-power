@@ -1,0 +1,48 @@
+package ttype
+
+import (
+	"gopower/converter"
+)
+
+//	ValueInt64 is a internal int64 type object
+type ValueInt64 struct {
+	ValueBasic
+	val int64
+}
+
+//	NewValueInt64 return a new ValueInt64 object with val interface
+func NewValueInt64(val interface{}) (valueInt64 *ValueInt64, err error) {
+	valueInt64 = &ValueInt64{ValueBasic: ValueBasic{valueType: TypeInt64, priority: PriorityInt64}}
+
+	valueInt64.val, err = converter.ToInt64(val)
+	if err != nil {
+		return nil, err
+	}
+
+	return valueInt64, nil
+}
+
+//	NewValueInt64If return interface type
+func NewValueInt64If(val interface{}) (valIf ValueIf, err error) {
+	return NewValueInt64(val)
+}
+
+//	ValueInt64 Equal Method
+func (p *ValueInt64) Equal(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToInt64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val == rhsVal.val)
+}
+
+//	ValueInt64 to Int64
+func (p *ValueInt64) ToInt64() (*ValueInt64, error) {
+	return NewValueInt64(p.val)
+}
+
+//	ValueInt64 to Bool
+func (p *ValueInt64) ToBool() (*ValueBool, error) {
+	return NewValueBool(p.val)
+}
