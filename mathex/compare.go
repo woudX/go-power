@@ -31,5 +31,4 @@ func Compare(lVal interface{}, rVal interface{}) (cmpResult int, err error) {
 	}
 
 	//	if not equal, then check which is larger one
-
 }

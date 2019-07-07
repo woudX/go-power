@@ -2,7 +2,7 @@ package ttype
 
 import (
 	"gopower/constant"
-	"gopower/converter"
+	"gopower/convert"
 	"math"
 )
 
@@ -16,7 +16,7 @@ type ValueFloat64 struct {
 func NewValueFloat64(val interface{}) (valueFloat64 *ValueFloat64, err error) {
 	valueFloat64 = &ValueFloat64{ValueBasic: ValueBasic{valueType: TypeFloat64, priority: PriorityFloat64}}
 
-	valueFloat64.val, err = converter.ToFloat64(val)
+	valueFloat64.val, err = convert.ToFloat64(val)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (p *ValueFloat64) Equal(rhs ValueIf) (ValueIf, error) {
 		return nil, err
 	}
 
-	return NewValueBool(math.Abs(p.val - rhsVal.val) < constant.EPSILON)
+	return NewValueBool(math.Abs(p.val-rhsVal.val) < constant.EPSILON)
 }
 
 //	ValueFloat64 to Int64

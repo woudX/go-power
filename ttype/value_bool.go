@@ -1,6 +1,8 @@
 package ttype
 
-import "gopower/converter"
+import (
+	"gopower/convert"
+)
 
 //	ValueBool is a internal bool type object
 type ValueBool struct {
@@ -10,9 +12,9 @@ type ValueBool struct {
 
 //	NewValueBool return a new ValueBool object with val interface
 func NewValueBool(val interface{}) (valueBool *ValueBool, err error) {
-	valueBool = &ValueBool{ValueBasic: ValueBasic{valueType: TypeBool, priority:PriorityBool}}
+	valueBool = &ValueBool{ValueBasic: ValueBasic{valueType: TypeBool, priority: PriorityBool}}
 
-	valueBool.val, err = converter.ToBool(val)
+	valueBool.val, err = convert.ToBool(val)
 	if err != nil {
 		return nil, err
 	}
@@ -54,4 +56,3 @@ func (p *ValueBool) ToBool() (*ValueBool, error) {
 func (p *ValueBool) ToFloat64() (*ValueFloat64, error) {
 	return NewValueFloat64(p.val)
 }
-

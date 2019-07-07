@@ -1,7 +1,7 @@
 package ttype
 
 import (
-	"gopower/converter"
+	"gopower/convert"
 )
 
 //	ValueInt64 is a internal int64 type object
@@ -14,7 +14,7 @@ type ValueInt64 struct {
 func NewValueInt64(val interface{}) (valueInt64 *ValueInt64, err error) {
 	valueInt64 = &ValueInt64{ValueBasic: ValueBasic{valueType: TypeInt64, priority: PriorityInt64}}
 
-	valueInt64.val, err = converter.ToInt64(val)
+	valueInt64.val, err = convert.ToInt64(val)
 	if err != nil {
 		return nil, err
 	}

@@ -1,6 +1,8 @@
 package ttype
 
-import "gopower/converter"
+import (
+	"gopower/convert"
+)
 
 //	ValueString is a internal string type object
 type ValueString struct {
@@ -10,9 +12,9 @@ type ValueString struct {
 
 //	NewValueString return a new NewValueString object with val interface
 func NewValueString(val interface{}) (valueString *ValueString, err error) {
-	valueString = &ValueString{ValueBasic: ValueBasic{valueType:TypeString, priority: PriorityString}}
+	valueString = &ValueString{ValueBasic: ValueBasic{valueType: TypeString, priority: PriorityString}}
 
-	valueString.val, err = converter.ToString(val)
+	valueString.val, err = convert.ToString(val)
 	if err != nil {
 		return nil, err
 	}
