@@ -102,10 +102,10 @@ func FindLastInSlice(sliceObj []interface{}, findObj interface{}) (pos int, err 
 }
 //=========================================SLice Find (Non-Reflect Version)=======================================//
 //	Compare function definition
-type compareFunc func(interface{}, interface{}) (int, error)
+type compareFunc func(lVal interface{}, rVal interface{}) (result int, err error)
 
 //	If function function definition
-type ifFunc func(interface{}) (int, error)
+type ifFunc func(val interface{}) (result int, err error)
 
 //	Internal realization for findif slice
 func _findInSliceIf(sliceObj[] interface{}, startPos int, endPos int, ifFuncHdl ifFunc) (pos int, err error) {

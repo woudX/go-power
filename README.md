@@ -7,7 +7,7 @@ A lightweight tools library for golang developer, which provider lots of useful 
 
 It contains :
 - **container** : provide a series of method to make containers operator more easily, such as slice, etc.
-- **converter** : provide common used type & other convert method
+- **convert** : provide common used type & other convert method
 - **mathex** : provide common used math/calculate functions
 - **ttype** : provide reflection based internal type system to process interface
 - **powerr** : provider a simple error library which can save dict and stack
@@ -17,36 +17,59 @@ It contains :
 
 ### container
 
-GoPower provide a series of methods to operate slice, include remove, find, etc. They are all named with SliceXXX, for example:
+GoPower provide a series of c-like methods to operate slice, include remove, find, etc. They are all named with SliceXXX, for example:
 
 ```go
-//  Find data pos in slice
-pos, err := container.SliceFind([]interface{}{-3,544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111}, 3.1)
+//  Some data for prepare
+complexSlice := []interface{}{-3,544, true, 22, "string-A", 123, 22, "str-B", 3.1, -23.4, 22, 3.111}
+stringSlice := []string{"string", "int", "php", "bool", "golang", "php"}
+intSlice := []int64{2,4,6,9,10,11}
 
-//  Find data pos in slice (non-reflect version)
-pos, err := container.SliceFindString([]string{"string", "int", "bool"}, "bool")
-pos, err := container.SliceFindInt64([]int64{111,222,333}, 222)
+//  GoPower provide Find, FindInSlice, FindInSliceXXX and FindIf method
+
+//  Find data pos in slice
+pos, err := container.Find(complexSlice..., 22) // pos=4
+pos, err := container.FindInSlice(complexSlice, 3.1) // pos=7
+pos, err := container.FindInSliceString(stringSlice, "bool") // pos=2
+pos, err := container.FindInSliceInt64(intSlice, 444) // pos=-1
+
+pos, err := container.FindLastInSlice(complexSlice, 22) // pos=10
+
+pos, err := container.FindInSliceIf(convert.MustToInterfaceSlice(intSlice), func(val interface{}) (result int, err error) {
+	return convert.ToInt(val.(int) % 2 == 1)}) // pos=3 
+
+pos, err := container.FindInSliceCmp(...) // use customed functions
 
 //  Remove data from slice
-rmSlice, err := container.SliceRemove([]interface{"string", "int", "bool"}, "int")
+rmSlice, err := container.RemoveFromSlice(complexSlice, 22) // Remove all 22
+rmSlice, err := container.RemoveFromSlice(convert.MustToInterfaceSlice(stringSlice), "php") // Remove all "php"
 
-//  Remove data from slice (non-reflect version)
-rmSlice, err := container.SliceRemoveString([]string{"string", "int", "bool"}, "int")
+rmSlice, err := container.RemoveFirstFromSlice(complexSlice, 22) // Remove first 22
+
+rmSlice, err := container.RemoveFromSliceIf(convert.MustToInterfaceSlice(intSlice), func(val interface{}) (result int, err error) {
+	return convert.ToInt(val.(int) % 2 == 1)}) // Remove all Odd(9, 11)
+
+rmSlice, err := container.RemoveFromSliceCmp(...) // use customed functions
 
 ```
 
-### converter
+### convert
 
 Golang type convert is an annoying problem, so this library provide a series of common used methods to help develop do converter
 
 ```go
-
 //  Try converter any data to all kinds of data
-intVal, err := converter.ToInt(interface{})
-int64Val, err := converter.ToInt64(interface{})
-float64Val, err := converter.ToFloat64(interface{})
-boolVal, err := converter.ToBool(interface{})
-stringVal, err := converter.ToString(interface{})
+
+srcVal := "1541123"
+intVal, err := converter.ToInt(srcVal)
+int64Val, err := converter.ToInt64(srcVal)
+float64Val, err := converter.ToFloat64(srcVal)
+boolVal, err := converter.ToBool(srcVal)
+stringVal, err := converter.ToString(srcVal)
+
+//  Try converter slice to interface slice
+ifSlice, err := converter.ToInterfaceSlice([]int{1,2,3,4,5})
+ifSlice, err := converter.ToInterfaceSlice([]string{"make", "golang", "powerful"})
 
 ```
 

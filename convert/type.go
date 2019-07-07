@@ -14,6 +14,55 @@ const (
 	ToType   = "to_type"
 )
 
+
+//	Convert interface to int
+func ToInt(srcData interface{}) (int, error) {
+	switch reflect.TypeOf(srcData).Kind() {
+	case reflect.Int:
+		return srcData.(int), nil
+	case reflect.Int8:
+		return int(srcData.(int8)), nil
+	case reflect.Int16:
+		return int(srcData.(int16)), nil
+	case reflect.Int32:
+		return int(srcData.(int32)), nil
+	case reflect.Int64:
+		return int(srcData.(int64)), nil
+	case reflect.Uint:
+		return int(srcData.(uint)), nil
+	case reflect.Uint8:
+		return int(srcData.(uint8)), nil
+	case reflect.Uint16:
+		return int(srcData.(uint16)), nil
+	case reflect.Uint32:
+		return int(srcData.(uint32)), nil
+	case reflect.Uint64:
+		return int(srcData.(uint64)), nil
+	case reflect.String:
+		result, err := strconv.ParseInt(srcData.(string), 10, 64)
+		return int(result), err
+	case reflect.Float32:
+		return int(srcData.(float32)), nil
+	case reflect.Float64:
+		return int(srcData.(float64)), nil
+	case reflect.Bool:
+		if srcData.(bool) {
+			return 1, nil
+		} else {
+			return 0, nil
+		}
+	default:
+		return 0, powerr.New(powerr.ErrNotSupportConvert).StoreKV(FromType, reflect.TypeOf(srcData).Kind()).
+			StoreKV(ToType, reflect.Int)
+	}
+}
+
+//	Must ToInt version
+func MustToInt(srcData interface{}) int {
+	result, _ := ToInt(srcData)
+	return result
+}
+
 //	Convert interface to int64
 func ToInt64(srcData interface{}) (int64, error) {
 	switch reflect.TypeOf(srcData).Kind() {
