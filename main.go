@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"gopower/container"
-	"gopower/convert"
+	"github.com/woudX/gopower/container"
+	"github.com/woudX/gopower/convert"
 )
 
 var demoInput = []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111}
@@ -21,7 +21,7 @@ func main() {
 	fmt.Println(pos)
 
 	result, err := container.FindInSliceIf(convert.MustToInterfaceSlice(demoIntInput), func(val interface{}) (result int, err error) {
-		return convert.ToInt(val.(int) % 2 == 1)
+		return convert.ToInt(val.(int)%2 == 1)
 	})
 	if err != nil {
 		fmt.Println(err.Error())
@@ -30,9 +30,8 @@ func main() {
 
 	fmt.Println(result)
 
-
 	result2, err := container.RemoveFromSliceIf(convert.MustToInterfaceSlice(demoIntInput), func(val interface{}) (result int, err error) {
-		return convert.ToInt(val.(int) % 2 == 1)
+		return convert.ToInt(val.(int)%2 == 1)
 	})
 	if err != nil {
 		fmt.Println(err.Error())

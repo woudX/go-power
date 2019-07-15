@@ -1,8 +1,8 @@
 package ttype
 
 import (
-	"gopower/powerr"
-	"gopower/reflector"
+	"github.com/woudX/gopower/powerr"
+	"github.com/woudX/gopower/reflector"
 )
 
 const (
@@ -81,4 +81,3 @@ func (p *ValueBasic) ToString() (*ValueString, error) {
 func (p *ValueBasic) ToInterface() (interface{}, error) {
 	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.ToInterface))
 }
-

@@ -1,8 +1,6 @@
 package ttype
 
-import (
-	"gopower/convert"
-)
+import "github.com/woudX/gopower/convert"
 
 //	ValueString is a internal string type object
 type ValueString struct {

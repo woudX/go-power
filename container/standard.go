@@ -1,6 +1,6 @@
 package container
 
-import "gopower/ttype"
+import "github.com/woudX/gopower/ttype"
 
 //	Find object from targets and return position, return -1 if not exist
 func Find(findObj interface{}, targets ...interface{}) (pos int, err error) {

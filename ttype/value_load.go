@@ -1,7 +1,7 @@
 package ttype
 
 import (
-	"gopower/powerr"
+	"github.com/woudX/gopower/powerr"
 	"reflect"
 )
 

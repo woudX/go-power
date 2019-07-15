@@ -1,8 +1,8 @@
 package container
 
 import (
-	"gopower/constant"
-	"gopower/ttype"
+	"github.com/woudX/gopower/constant"
+	"github.com/woudX/gopower/ttype"
 	"math"
 )
 
@@ -100,6 +100,7 @@ func FindInSlice(sliceObj []interface{}, findObj interface{}) (pos int, err erro
 func FindLastInSlice(sliceObj []interface{}, findObj interface{}) (pos int, err error) {
 	return _findInSliceReverse(sliceObj, 0, len(sliceObj), findObj)
 }
+
 //=========================================SLice Find (Non-Reflect Version)=======================================//
 //	Compare function definition
 type compareFunc func(lVal interface{}, rVal interface{}) (result int, err error)
@@ -108,7 +109,7 @@ type compareFunc func(lVal interface{}, rVal interface{}) (result int, err error
 type ifFunc func(val interface{}) (result int, err error)
 
 //	Internal realization for findif slice
-func _findInSliceIf(sliceObj[] interface{}, startPos int, endPos int, ifFuncHdl ifFunc) (pos int, err error) {
+func _findInSliceIf(sliceObj [] interface{}, startPos int, endPos int, ifFuncHdl ifFunc) (pos int, err error) {
 	pos = -1
 	//	Traversal each obj in range and convert to ValueIf, use operator to check equal
 	for idx := startPos; idx < endPos; idx++ {
@@ -289,6 +290,7 @@ func RemoveFromSlice(sliceObj []interface{}, remObj interface{}) (result []inter
 
 	return result, nil
 }
+
 //=========================================SLice Remove (Non-Reflect Version)=======================================//\
 //	Remove all remObj from slice
 func RemoveFromSliceCmp(sliceObj []interface{}, remObj interface{}, cmpFuncHdl compareFunc) (result []interface{}, err error) {

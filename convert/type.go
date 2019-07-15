@@ -2,8 +2,8 @@ package convert
 
 import (
 	"fmt"
-	"gopower/constant"
-	"gopower/powerr"
+	"github.com/woudX/gopower/constant"
+	"github.com/woudX/gopower/powerr"
 	"math"
 	"reflect"
 	"strconv"
@@ -13,7 +13,6 @@ const (
 	FromType = "from_type"
 	ToType   = "to_type"
 )
-
 
 //	Convert interface to int
 func ToInt(srcData interface{}) (int, error) {
@@ -109,7 +108,6 @@ func MustToInt64(srcData interface{}) int64 {
 	result, _ := ToInt64(srcData)
 	return result
 }
-
 
 //	Convert interface to bool
 func ToBool(srcData interface{}) (bool, error) {
@@ -231,7 +229,7 @@ func ToInterfaceSlice(srcData interface{}) ([]interface{}, error) {
 	dstSlice := reflect.MakeSlice(reflect.TypeOf([]interface{}{}), 0, srcSlice.Len())
 
 	//	Copy src to dst
-	for idx := 0; idx < srcSlice.Len(); idx ++ {
+	for idx := 0; idx < srcSlice.Len(); idx++ {
 		dstSlice = reflect.Append(dstSlice, srcSlice.Index(idx))
 	}
 

@@ -1,8 +1,8 @@
 package ttype
 
 import (
-	"gopower/constant"
-	"gopower/convert"
+	"github.com/woudX/gopower/constant"
+	"github.com/woudX/gopower/convert"
 	"math"
 )
 

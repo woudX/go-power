@@ -1,7 +1,7 @@
 package ttype
 
 import (
-	"gopower/convert"
+	"github.com/woudX/gopower/convert"
 )
 
 //	ValueBool is a internal bool type object

@@ -1,6 +1,6 @@
 package mathex
 
-import "gopower/ttype"
+import "github.com/woudX/gopower/ttype"
 
 //	Compare two interface value and return result, return -1 if lVal larger than rVal, return 0 if equal and
 //	return 1 if lVal smaller than rVal

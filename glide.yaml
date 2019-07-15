@@ -1,0 +1,20 @@
+package: github.com/Masterminds/glide
+homepage: https://masterminds.github.io/glide
+license: MIT
+owners:
+  - name: Matt Butcher
+    email: technosophos@gmail.com
+    homepage: http://technosophos.com
+  - name: Matt Farina
+    email: matt@mattfarina.com
+    homepage: https://www.mattfarina.com
+ignore:
+  - appengine
+excludeDirs:
+  - node_modules
+import:
+testImport:
+  - package: github.com/stretchr/testify
+    version: 1.2.0
+    subpackages:
+      - assert

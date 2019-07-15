@@ -1,6 +1,6 @@
 package ttype
 
-import "gopower/powerr"
+import "github.com/woudX/gopower/powerr"
 
 //============================= Operator Interface ===============================//
 
@@ -14,7 +14,7 @@ type OperatorIf interface {
 var OpEqual = &OperatorEqual{}
 
 //	Operator Equal
-type OperatorEqual struct {}
+type OperatorEqual struct{}
 
 //	Operator Equal Operator
 func (p *OperatorEqual) Operate(valueIf ...ValueIf) (result ValueIf, err error) {
@@ -33,4 +33,4 @@ func (p *OperatorEqual) Operate(valueIf ...ValueIf) (result ValueIf, err error) 
 	} else {
 		return rightVal.Equal(leftVal)
 	}
- }
+}

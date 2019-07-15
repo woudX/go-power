@@ -1,8 +1,6 @@
 package ttype
 
-import (
-	"gopower/convert"
-)
+import "github.com/woudX/gopower/convert"
 
 //	ValueInt64 is a internal int64 type object
 type ValueInt64 struct {
