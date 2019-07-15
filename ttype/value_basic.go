@@ -66,6 +66,11 @@ func (p *ValueBasic) LessEqual(rhs ValueIf) (ValueIf, error) {
 	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.LessEqual))
 }
 
+//	Add
+func (p *ValueBasic) Add(rhs ValueIf) (ValueIf, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.Add))
+}
+
 //	Converter
 //	ToInt64
 func (p *ValueBasic) ToInt64() (*ValueInt64, error) {

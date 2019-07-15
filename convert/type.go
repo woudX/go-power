@@ -58,7 +58,11 @@ func ToInt(srcData interface{}) (int, error) {
 
 //	Must ToInt version
 func MustToInt(srcData interface{}) int {
-	result, _ := ToInt(srcData)
+	result, err := ToInt(srcData)
+	if err != nil {
+		panic("converter: MustToInt(" + fmt.Sprintf("%v", srcData) + "): " + err.Error())
+	}
+
 	return result
 }
 
@@ -105,7 +109,11 @@ func ToInt64(srcData interface{}) (int64, error) {
 
 //	Must ToInt64 version
 func MustToInt64(srcData interface{}) int64 {
-	result, _ := ToInt64(srcData)
+	result, err := ToInt64(srcData)
+	if err != nil {
+		panic("converter: MustToInt64(" + fmt.Sprintf("%v", srcData) + "): " + err.Error())
+	}
+
 	return result
 }
 
@@ -148,7 +156,11 @@ func ToBool(srcData interface{}) (bool, error) {
 
 //	Must ToBool version
 func MustToBool(srcData interface{}) bool {
-	result, _ := ToBool(srcData)
+	result, err := ToBool(srcData)
+	if err != nil {
+		panic("converter: MustToBool(" + fmt.Sprintf("%v", srcData) + "): " + err.Error())
+	}
+
 	return result
 }
 
@@ -195,7 +207,11 @@ func ToFloat64(srcData interface{}) (float64, error) {
 
 //	Must ToFloat64 version
 func MustToFloat64(srcData interface{}) float64 {
-	result, _ := ToFloat64(srcData)
+	result, err := ToFloat64(srcData)
+	if err != nil {
+		panic("converter: MustToFloat64(" + fmt.Sprintf("%v", srcData) + "): " + err.Error())
+	}
+
 	return result
 }
 
@@ -236,8 +252,12 @@ func ToInterfaceSlice(srcData interface{}) ([]interface{}, error) {
 	return dstSlice.Interface().([]interface{}), nil
 }
 
-//	Must ToInterfaceSlice version
+//	MustToInterfaceSlice version is like ToInterfaceSlice but panic if convert failed
 func MustToInterfaceSlice(srcData interface{}) []interface{} {
-	result, _ := ToInterfaceSlice(srcData)
+	result, err := ToInterfaceSlice(srcData)
+	if err != nil {
+		panic("converter: MustToInterfaceSlice(" + fmt.Sprintf("%v", srcData) + "): " + err.Error())
+	}
+
 	return result
 }

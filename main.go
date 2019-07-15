@@ -53,4 +53,9 @@ func main() {
 
 	fmt.Println(mathex.Max(3,2,1, 3.33, 2, true, "3.415"))
 	fmt.Println(mathex.Max("3.415"))
+
+	fmt.Println(mathex.Min(3,2,1, 3.33, 2, true, "3.415"))
+	fmt.Println(mathex.Min("3.415"))
+
+	fmt.Println(mathex.Sum(3,2,1, 3.33, 2, "3.415"))
 }

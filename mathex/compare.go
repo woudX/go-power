@@ -67,19 +67,54 @@ func Max(params ...interface{}) (result interface{}, err error) {
 			return nil, err
 		}
 
-		isLe, err := ttype.OpLargerEqual.Operate(maxVal, nowVal)
+		isLargerEqual, err := ttype.OpLargerEqual.Operate(maxVal, nowVal)
 		if err != nil {
 			return nil, err
 		}
-		isLeResult, err := ttype.TryGetBoolFromValueIf(isLe)
+		isLargeEqualResult, err := ttype.TryGetBoolFromValueIf(isLargerEqual)
 		if err != nil {
 			return nil, err
 		}
 
-		if !isLeResult {
+		if !isLargeEqualResult {
 			maxVal = nowVal
 		}
 	}
 
 	return maxVal.ToInterface()
+}
+
+//	Min return the minimum of params with interface mode
+func Min(params ...interface{}) (result interface{}, err error) {
+	if len(params) <= 0 {
+		return nil, nil
+	}
+
+	minVal, err := ttype.LoadValueIfFromInterface(params[0])
+	if err != nil {
+		return nil, err
+	}
+
+	//	compare and get minVal
+	for _, item := range params {
+		nowVal, err := ttype.LoadValueIfFromInterface(item)
+		if err != nil {
+			return nil, err
+		}
+
+		isLessEqual, err := ttype.OpLessEqual.Operate(minVal, nowVal)
+		if err != nil {
+			return nil, err
+		}
+		isLessEqualResult, err := ttype.TryGetBoolFromValueIf(isLessEqual)
+		if err != nil {
+			return nil, err
+		}
+
+		if !isLessEqualResult {
+			minVal = nowVal
+		}
+	}
+
+	return minVal.ToInterface()
 }

@@ -17,6 +17,8 @@ var (
 	OpLargerEqual = &OperatorLargerEqual{}
 	OpLess        = &OperatorLess{}
 	OpLessEqual   = &OperatorLessEqual{}
+
+	OpAdd = &OperatorAdd{}
 )
 
 //	Operator Equal
@@ -126,5 +128,27 @@ func (p *OperatorLessEqual) Operate(valueIf ...ValueIf) (result ValueIf, err err
 		return leftVal.LessEqual(rightVal)
 	} else {
 		return rightVal.Larger(leftVal)
+	}
+}
+
+//	Operator Add
+type OperatorAdd struct{}
+
+//	Operator Add Operator
+func (p *OperatorAdd) Operate(valueIf ...ValueIf) (result ValueIf, err error) {
+
+	// need two valueIf
+	if len(valueIf) != 2 {
+		return nil, powerr.New(powerr.ErrNotEnoughParams).StoreKV("param_len", len(valueIf))
+	}
+
+	leftVal := valueIf[0]
+	rightVal := valueIf[1]
+
+	//	check priority and do operator
+	if leftVal.Priority() >= rightVal.Priority() {
+		return leftVal.Add(rightVal)
+	} else {
+		return rightVal.Add(leftVal)
 	}
 }

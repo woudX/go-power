@@ -84,6 +84,16 @@ func (p *ValueFloat64) LessEqual(rhs ValueIf) (ValueIf, error) {
 	return NewValueBool(p.val - rhsVal.val < constant.EPSILON)
 }
 
+//	ValueFloat64 Add Method
+func (p *ValueFloat64) Add(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToFloat64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueFloat64(p.val + rhsVal.val)
+}
+
 //	ValueFloat64 to Int64
 func (p *ValueFloat64) ToInt64() (*ValueInt64, error) {
 	return NewValueInt64(p.val)

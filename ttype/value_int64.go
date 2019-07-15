@@ -80,6 +80,16 @@ func (p *ValueInt64) LessEqual(rhs ValueIf) (ValueIf, error) {
 	return NewValueBool(p.val <= rhsVal.val)
 }
 
+//	ValueInt64 Add Method
+func (p *ValueInt64) Add(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToInt64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueInt64(p.val + rhsVal.val)
+}
+
 //	ValueInt64 to Int64
 func (p *ValueInt64) ToInt64() (*ValueInt64, error) {
 	return NewValueInt64(p.val)

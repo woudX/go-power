@@ -27,6 +27,8 @@ type ValueIf interface {
 	Less(rhs ValueIf) (ValueIf, error)
 	LessEqual(rhs ValueIf) (ValueIf, error)
 
+	Add(rhs ValueIf) (ValueIf, error)
+
 	//	Converter
 	ToInt64() (*ValueInt64, error)
 	ToFloat64() (*ValueFloat64, error)
