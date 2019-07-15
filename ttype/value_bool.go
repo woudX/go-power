@@ -56,3 +56,8 @@ func (p *ValueBool) ToBool() (*ValueBool, error) {
 func (p *ValueBool) ToFloat64() (*ValueFloat64, error) {
 	return NewValueFloat64(p.val)
 }
+
+//	ValueBool to Interface
+func (p*ValueBool) ToInterface() (interface{}, error) {
+	return p.val, nil
+}

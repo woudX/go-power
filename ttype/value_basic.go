@@ -51,9 +51,19 @@ func (p *ValueBasic) Larger(rhs ValueIf) (ValueIf, error) {
 	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.Larger))
 }
 
+//	LargerEqual
+func (p *ValueBasic) LargerEqual(rhs ValueIf) (ValueIf, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.LargerEqual))
+}
+
 //	Less
 func (p *ValueBasic) Less(rhs ValueIf) (ValueIf, error) {
 	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.Less))
+}
+
+//	LessEqual
+func (p *ValueBasic) LessEqual(rhs ValueIf) (ValueIf, error) {
+	return nil, powerr.New(powerr.ErrInfoUnImplementFunction).StoreKV(FuncName, reflector.GetFunctionName(p.LessEqual))
 }
 
 //	Converter

@@ -40,6 +40,46 @@ func (p *ValueInt64) Equal(rhs ValueIf) (ValueIf, error) {
 	return NewValueBool(p.val == rhsVal.val)
 }
 
+//	ValueInt64 Larger Method
+func (p *ValueInt64) Larger(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToInt64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val > rhsVal.val)
+}
+
+//	ValueInt64 LargerEqual Method
+func (p *ValueInt64) LargerEqual(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToInt64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val >= rhsVal.val)
+}
+
+//	ValueInt64 Less Method
+func (p *ValueInt64) Less(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToInt64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val < rhsVal.val)
+}
+
+//	ValueInt64 LessEqual Method
+func (p *ValueInt64) LessEqual(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToInt64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val <= rhsVal.val)
+}
+
 //	ValueInt64 to Int64
 func (p *ValueInt64) ToInt64() (*ValueInt64, error) {
 	return NewValueInt64(p.val)
@@ -53,4 +93,9 @@ func (p *ValueInt64) ToBool() (*ValueBool, error) {
 //	ValueInt64 to Float64
 func (p *ValueInt64) ToFloat64() (*ValueFloat64, error) {
 	return NewValueFloat64(p.val)
+}
+
+//	ValueInt64 to Interface
+func (p*ValueInt64) ToInterface() (interface{}, error) {
+	return p.val, nil
 }

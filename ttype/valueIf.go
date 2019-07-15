@@ -23,7 +23,9 @@ type ValueIf interface {
 	//	Operations
 	Equal(rhs ValueIf) (ValueIf, error)
 	Larger(rhs ValueIf) (ValueIf, error)
+	LargerEqual(rhs ValueIf) (ValueIf, error)
 	Less(rhs ValueIf) (ValueIf, error)
+	LessEqual(rhs ValueIf) (ValueIf, error)
 
 	//	Converter
 	ToInt64() (*ValueInt64, error)

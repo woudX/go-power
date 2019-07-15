@@ -44,6 +44,46 @@ func (p *ValueFloat64) Equal(rhs ValueIf) (ValueIf, error) {
 	return NewValueBool(math.Abs(p.val-rhsVal.val) < constant.EPSILON)
 }
 
+//	ValueFloat64 Larger Method
+func (p *ValueFloat64) Larger(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToFloat64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val - rhsVal.val > constant.EPSILON)
+}
+
+//	ValueFloat64 Larger Method
+func (p *ValueFloat64) LargerEqual(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToFloat64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val - rhsVal.val > -constant.EPSILON)
+}
+
+//	ValueFloat64 Less Method
+func (p *ValueFloat64) Less(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToFloat64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val - rhsVal.val < -constant.EPSILON)
+}
+
+//	ValueFloat64 LessEqual Method
+func (p *ValueFloat64) LessEqual(rhs ValueIf) (ValueIf, error) {
+	rhsVal, err := rhs.ToFloat64()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewValueBool(p.val - rhsVal.val < constant.EPSILON)
+}
+
 //	ValueFloat64 to Int64
 func (p *ValueFloat64) ToInt64() (*ValueInt64, error) {
 	return NewValueInt64(p.val)
@@ -57,4 +97,9 @@ func (p *ValueFloat64) ToBool() (*ValueBool, error) {
 //	ValueFloat64 to Float64
 func (p *ValueFloat64) ToFloat64() (*ValueFloat64, error) {
 	return NewValueFloat64(p.val)
+}
+
+//	ValueFloat64 to Interface
+func (p*ValueFloat64) ToInterface() (interface{}, error) {
+	return p.val, nil
 }
