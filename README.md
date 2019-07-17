@@ -12,6 +12,7 @@ It contains :
 - **ttype** : provide reflection based internal type system to process interface
 - **powerr** : provider a simple error library which can save dict and stack
 - **reflector** : provider common used reflect method
+- **structure** : provider kinds of interesting data struct, for example: workcluster, jumplist, etc.
 
 ## Examples
 
