@@ -5,17 +5,18 @@ import (
 	"fmt"
 	"github.com/woudX/gopower/powerr"
 	"math/rand"
+	"reflect"
 	"sync"
 	"time"
 )
 
 type PopStatus int
+
 const (
 	PopStatusOk PopStatus = iota
 	PopStatusTimeOut
 	PopStatusClosed
 )
-
 
 var DefaultPopBlockMillisecond int64 = 50
 
@@ -65,12 +66,70 @@ func NewWorkCluster(workerCount int, chanCache int) *WorkCluster {
 	return cluster
 }
 
-//	Start2 will auto fill workHdl params
-func (wc *WorkCluster) Start2(workHdl interface{}) {
+//	StartR use reflect package to fill workHdl params and call function handler method
+//	accept a context.context and a custom function handler as input. It should be noted that
+//	[function params] type need equal to [input channel] type, for example:
+//
+//	type RequestStruct struct {...}
+//	wc.StartR(ctx, func(ctx context.context, requestData *RequestStruct) (bool))
+//
+//	This define need input channel data type *RequestStruct and will return bool type as result
+func (wc *WorkCluster) StartR(ctx context.Context, workHdl interface{}) {
+	//	set wait group
+	wc.waiter = &sync.WaitGroup{}
+	wc.waiter.Add(wc.workerCount)
 
+	//	start goroutine
+	for idx := 0; idx < wc.workerCount; idx++ {
+		go func(gid int, inputChan chan interface{}, outputChan chan interface{}, ctrlChan chan int) {
+			defer func() {
+				if r := recover(); r != nil {
+					wc.Err = powerr.New("workCluster panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+				}
+
+				wc.waiter.Done()
+			}()
+
+		exitLoop:
+			for {
+				select {
+				case <-ctrlChan:
+					break exitLoop
+
+				case inputData, ok := <-inputChan:
+					if !ok {
+						break exitLoop
+					}
+
+					//	use reflect method to call func and return data
+					funcVal := reflect.ValueOf(workHdl)
+					returnValList := funcVal.Call([]reflect.Value{reflect.ValueOf(ctx), reflect.ValueOf(inputData)})
+					if len(returnValList) > 0 {
+						outputChan <- returnValList[0].Interface()
+					}
+
+					//	when process can't read data from inputChan, it sleep 1 millisecond to return thread controller
+				case <-time.After(time.Millisecond * 50):
+					time.Sleep(time.Millisecond)
+				}
+			}
+
+		}(idx, wc.inputChanList[idx], wc.outputChan, wc.ctrlChanList[idx])
+	}
+
+	//	start goroutine for detect worker finished and close output channel
+	go func() {
+		wc.waiter.Wait()
+		close(wc.outputChan)
+	}()
 }
 
 //	Start worker goroutines and process input data
+//	method accept a context.context and workHandlerFunc as input, for example:
+//
+//	wc.Start(ctx, func(context.context, interface{}) interface{})
+//
+//	if you want use custom type as input and output, we suggest using StartR() method
 func (wc *WorkCluster) Start(ctx context.Context, workHdl workHandlerFunc) {
 	//	set wait group
 	wc.waiter = &sync.WaitGroup{}
