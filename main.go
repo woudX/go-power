@@ -5,6 +5,7 @@ import (
 	"github.com/woudX/gopower/container"
 	"github.com/woudX/gopower/convert"
 	"github.com/woudX/gopower/mathex"
+	"time"
 )
 
 var demoInput = []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111}
@@ -43,19 +44,22 @@ func main() {
 
 	//	Test-Compare
 	//	TODO: string(float) vs int may cause problem
-	fmt.Println(mathex.Compare(3,2.9999))
-	fmt.Println(mathex.Compare(3,2.9999999999999))
-	fmt.Println(mathex.Compare(3,true))
-	fmt.Println(mathex.Compare(0,true))
-	fmt.Println(mathex.Compare("a","aa"))
-	fmt.Println(mathex.Compare("b","aa"))
+	fmt.Println(mathex.Compare(3, 2.9999))
+	fmt.Println(mathex.Compare(3, 2.9999999999999))
+	fmt.Println(mathex.Compare(3, true))
+	fmt.Println(mathex.Compare(0, true))
+	fmt.Println(mathex.Compare("a", "aa"))
+	fmt.Println(mathex.Compare("b", "aa"))
 
-
-	fmt.Println(mathex.Max(3,2,1, 3.33, 2, true, "3.415"))
+	fmt.Println(mathex.Max(3, 2, 1, 3.33, 2, true, "3.415"))
 	fmt.Println(mathex.Max("3.415"))
 
-	fmt.Println(mathex.Min(3,2,1, 3.33, 2, true, "3.415"))
+	fmt.Println(mathex.Min(3, 2, 1, 3.33, 2, true, "3.415"))
 	fmt.Println(mathex.Min("3.415"))
 
-	fmt.Println(mathex.Sum(3,2,1, 3.33, 2, "3.415"))
+	fmt.Println(mathex.Sum(3, 2, 1, 3.33, 2, "3.415"))
+
+
+
+	time.Sleep(time.Second * 1000)
 }
