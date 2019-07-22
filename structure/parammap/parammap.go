@@ -46,3 +46,45 @@ func (pm *ParamMap) TryGet(key string, out interface{}) (err error) {
 
 	return reflector.SetVal(realVal, out)
 }
+
+//	GetInf return int value in ParamMap
+func (pm *ParamMap) GetInt(key string) (result int, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
+
+//	GetInf return int64 value in ParamMap
+func (pm *ParamMap) GetInt64(key string) (result int64, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
+
+//	GetInf return float32 value in ParamMap
+func (pm *ParamMap) GetFloat32(key string) (result float32, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
+
+//	GetInf return float32 value in ParamMap
+func (pm *ParamMap) GetFloat64(key string) (result float64, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
+
+//	GetInf return string value in ParamMap
+func (pm *ParamMap) GetString(key string) (result string, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
+
+//	GetInf return bool value in ParamMap
+func (pm *ParamMap) GetBool(key string) (result bool, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
+
+//	GetInf return float32 value in ParamMap
+func (pm *ParamMap) GetInterface(key string) (result interface{}, err error) {
+	err = pm.TryGet(key, &result)
+	return result, err
+}
