@@ -17,7 +17,7 @@ type WorkCluster interface {
 	Pop() (result interface{}, status PopStatus)
 	PopT(blockMillisecond int64) (result interface{}, status PopStatus)
 	TryPop(referenceOut interface{}) (status PopStatus, err error)
-	TryPopT(referenceOut interface{}, blockMillisecond int64) (status PopStatus, err error)
+	TryPopT(blockMillisecond int64, referenceOut interface{}) (status PopStatus, err error)
 
 	Wait() WorkCluster
 	Stop() WorkCluster

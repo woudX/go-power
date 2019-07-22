@@ -45,12 +45,12 @@ type workCluster struct {
 }
 
 //	Create a default param work cluster
-func NewDefaultWorkCluster() *workCluster {
+func NewDefaultWorkCluster() WorkCluster {
 	return NewWorkCluster(20, 100)
 }
 
 //	Create a work cluster
-func NewWorkCluster(workerCount int, chanCache int) *workCluster {
+func NewWorkCluster(workerCount int, chanCache int) WorkCluster {
 	cluster := &workCluster{
 		workerCount: workerCount,
 	}
@@ -222,11 +222,11 @@ func (wc *workCluster) Pop() (interface{}, PopStatus) {
 	return wc.PopT(DefaultPopBlockMillisecond)
 }
 
-//	TryPop insist return result with custom data type with reflector.SetVal
-func (wc *workCluster) TryPop(referenceOut interface{}) (popStatus PopStatus, err error) {
+//	TryPopT return result with custom data type with reflector.SetVal in blockMillisecond
+func (wc *workCluster) TryPopT(blockMillisecond int64, referenceOut interface{}) (status PopStatus, err error) {
 
-	//	Pop data from channel
-	val, popStatus := wc.Pop()
+	//	Pope data from channel with block time
+	val, popStatus := wc.PopT(blockMillisecond)
 
 	switch popStatus {
 	case PopStatusOk:
@@ -238,6 +238,12 @@ func (wc *workCluster) TryPop(referenceOut interface{}) (popStatus PopStatus, er
 	default:
 		return popStatus, nil
 	}
+}
+
+
+//	TryPop insist return result with custom data type with reflector.SetVal
+func (wc *workCluster) TryPop(referenceOut interface{}) (popStatus PopStatus, err error) {
+	return wc.TryPopT(DefaultPopBlockMillisecond, referenceOut)
 }
 
 //	PopChan return the output channel
