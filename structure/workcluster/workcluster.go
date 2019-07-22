@@ -45,12 +45,12 @@ type workCluster struct {
 }
 
 //	Create a default param work cluster
-func NewDefaultWorkCluster() WorkCluster {
-	return NewWorkCluster(20, 100)
+func NewWorkCluster() WorkCluster {
+	return NewWorkClusterCustom(20, 100)
 }
 
 //	Create a work cluster
-func NewWorkCluster(workerCount int, chanCache int) WorkCluster {
+func NewWorkClusterCustom(workerCount int, chanCache int) WorkCluster {
 	cluster := &workCluster{
 		workerCount: workerCount,
 	}
@@ -73,7 +73,7 @@ func NewWorkCluster(workerCount int, chanCache int) WorkCluster {
 //	wc.StartR(ctx, func(ctx context.context, requestData *RequestStruct) (bool))
 //
 //	This define need input channel data type *RequestStruct and will return bool type as result
-func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) *workCluster {
+func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) WorkCluster {
 	//	set wait group
 	wc.waiter = &sync.WaitGroup{}
 	wc.waiter.Add(wc.workerCount)
@@ -131,7 +131,7 @@ func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) *workClu
 //	wc.Start(ctx, func(context.context, interface{}) interface{})
 //
 //	if you want use custom type as input and output, we suggest using StartR() method
-func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) *workCluster {
+func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) WorkCluster {
 	//	set wait group
 	wc.waiter = &sync.WaitGroup{}
 	wc.waiter.Add(wc.workerCount)
@@ -178,7 +178,7 @@ func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) *work
 }
 
 //	Push will send inputData to channel, and then processed by worker
-func (wc *workCluster) Push(inputDataList ...interface{}) *workCluster {
+func (wc *workCluster) Push(inputDataList ...interface{}) WorkCluster {
 	for _, data := range inputDataList {
 		randIdx := rand.Intn(wc.workerCount)
 		wc.inputChanList[randIdx] <- data
@@ -188,7 +188,7 @@ func (wc *workCluster) Push(inputDataList ...interface{}) *workCluster {
 }
 
 //	PushDone close all input channel and finish push
-func (wc *workCluster) PushDone() *workCluster {
+func (wc *workCluster) PushDone() WorkCluster {
 	for idx := range wc.inputChanList {
 		close(wc.inputChanList[idx])
 	}
@@ -198,7 +198,7 @@ func (wc *workCluster) PushDone() *workCluster {
 
 //	Wait until all worker finished
 //	This method may cause blocking
-func (wc *workCluster) Wait() *workCluster {
+func (wc *workCluster) Wait() WorkCluster {
 	wc.waiter.Wait()
 	return wc
 }
@@ -240,7 +240,6 @@ func (wc *workCluster) TryPopT(blockMillisecond int64, referenceOut interface{})
 	}
 }
 
-
 //	TryPop insist return result with custom data type with reflector.SetVal
 func (wc *workCluster) TryPop(referenceOut interface{}) (popStatus PopStatus, err error) {
 	return wc.TryPopT(DefaultPopBlockMillisecond, referenceOut)
@@ -252,7 +251,7 @@ func (wc *workCluster) PopChan() chan interface{} {
 }
 
 //	Stop the work cluster, all remain data in input chan will lose
-func (wc *workCluster) Stop() *workCluster {
+func (wc *workCluster) Stop() WorkCluster {
 	for idx := range wc.ctrlChanList {
 		close(wc.ctrlChanList[idx])
 	}
