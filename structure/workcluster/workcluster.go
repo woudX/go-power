@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/woudX/gopower/powerr"
+	"github.com/woudX/gopower/reflector"
 	"math/rand"
 	"reflect"
 	"sync"
@@ -16,18 +17,16 @@ const (
 	PopStatusOk PopStatus = iota
 	PopStatusTimeOut
 	PopStatusClosed
+	PopStatusError
 )
 
 var DefaultPopBlockMillisecond int64 = 50
 
-//	WorkHandler function define
-type workHandlerFunc func(ctx context.Context, inputData interface{}) (outputData interface{})
-
-//	WorkCluster recv a task and create multi worker goroutine to process data
+//	workCluster recv a task and create multi worker goroutine to process data
 //  - Select worker nums
 //  - Easy create and post data
 //  - Goroutine safe and return data easily, which kind of types you like
-type WorkCluster struct {
+type workCluster struct {
 	//	worker counter
 	workerCount int
 
@@ -46,13 +45,13 @@ type WorkCluster struct {
 }
 
 //	Create a default param work cluster
-func NewDefaultWorkCluster() *WorkCluster {
+func NewDefaultWorkCluster() *workCluster {
 	return NewWorkCluster(20, 100)
 }
 
 //	Create a work cluster
-func NewWorkCluster(workerCount int, chanCache int) *WorkCluster {
-	cluster := &WorkCluster{
+func NewWorkCluster(workerCount int, chanCache int) *workCluster {
+	cluster := &workCluster{
 		workerCount: workerCount,
 	}
 
@@ -74,7 +73,7 @@ func NewWorkCluster(workerCount int, chanCache int) *WorkCluster {
 //	wc.StartR(ctx, func(ctx context.context, requestData *RequestStruct) (bool))
 //
 //	This define need input channel data type *RequestStruct and will return bool type as result
-func (wc *WorkCluster) StartR(ctx context.Context, workHdl interface{}) {
+func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) *workCluster {
 	//	set wait group
 	wc.waiter = &sync.WaitGroup{}
 	wc.waiter.Add(wc.workerCount)
@@ -122,6 +121,8 @@ func (wc *WorkCluster) StartR(ctx context.Context, workHdl interface{}) {
 		wc.waiter.Wait()
 		close(wc.outputChan)
 	}()
+
+	return wc
 }
 
 //	Start worker goroutines and process input data
@@ -130,7 +131,7 @@ func (wc *WorkCluster) StartR(ctx context.Context, workHdl interface{}) {
 //	wc.Start(ctx, func(context.context, interface{}) interface{})
 //
 //	if you want use custom type as input and output, we suggest using StartR() method
-func (wc *WorkCluster) Start(ctx context.Context, workHdl workHandlerFunc) {
+func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) *workCluster {
 	//	set wait group
 	wc.waiter = &sync.WaitGroup{}
 	wc.waiter.Add(wc.workerCount)
@@ -172,10 +173,12 @@ func (wc *WorkCluster) Start(ctx context.Context, workHdl workHandlerFunc) {
 		wc.waiter.Wait()
 		close(wc.outputChan)
 	}()
+
+	return wc
 }
 
 //	Push will send inputData to channel, and then processed by worker
-func (wc *WorkCluster) Push(inputDataList ...interface{}) *WorkCluster {
+func (wc *workCluster) Push(inputDataList ...interface{}) *workCluster {
 	for _, data := range inputDataList {
 		randIdx := rand.Intn(wc.workerCount)
 		wc.inputChanList[randIdx] <- data
@@ -185,7 +188,7 @@ func (wc *WorkCluster) Push(inputDataList ...interface{}) *WorkCluster {
 }
 
 //	PushDone close all input channel and finish push
-func (wc *WorkCluster) PushDone() *WorkCluster {
+func (wc *workCluster) PushDone() *workCluster {
 	for idx := range wc.inputChanList {
 		close(wc.inputChanList[idx])
 	}
@@ -195,13 +198,13 @@ func (wc *WorkCluster) PushDone() *WorkCluster {
 
 //	Wait until all worker finished
 //	This method may cause blocking
-func (wc *WorkCluster) Wait() *WorkCluster {
+func (wc *workCluster) Wait() *workCluster {
 	wc.waiter.Wait()
 	return wc
 }
 
 //	PopT return a result from output chan with input blockMillisecond
-func (wc *WorkCluster) PopT(blockMillisecond int64) (interface{}, PopStatus) {
+func (wc *workCluster) PopT(blockMillisecond int64) (interface{}, PopStatus) {
 	select {
 	case <-time.After(time.Duration(blockMillisecond) * time.Millisecond):
 		return nil, PopStatusTimeOut
@@ -215,18 +218,38 @@ func (wc *WorkCluster) PopT(blockMillisecond int64) (interface{}, PopStatus) {
 }
 
 //	Pop return a result from output chan with 50ms block time
-func (wc *WorkCluster) Pop() (interface{}, PopStatus) {
+func (wc *workCluster) Pop() (interface{}, PopStatus) {
 	return wc.PopT(DefaultPopBlockMillisecond)
 }
 
+//	TryPop insist return result with custom data type with reflector.SetVal
+func (wc *workCluster) TryPop(referenceOut interface{}) (popStatus PopStatus, err error) {
+
+	//	Pop data from channel
+	val, popStatus := wc.Pop()
+
+	switch popStatus {
+	case PopStatusOk:
+		if err = reflector.SetVal(val, referenceOut); err != nil {
+			return PopStatusError, err
+		}
+
+		return popStatus, nil
+	default:
+		return popStatus, nil
+	}
+}
+
 //	PopChan return the output channel
-func (wc *WorkCluster) PopChan() chan interface{} {
+func (wc *workCluster) PopChan() chan interface{} {
 	return wc.outputChan
 }
 
 //	Stop the work cluster, all remain data in input chan will lose
-func (wc *WorkCluster) Stop() {
+func (wc *workCluster) Stop() *workCluster {
 	for idx := range wc.ctrlChanList {
 		close(wc.ctrlChanList[idx])
 	}
+
+	return wc
 }

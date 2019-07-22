@@ -2,7 +2,7 @@ package parammap
 
 import (
 	"github.com/woudX/gopower/powerr"
-	"reflect"
+	"github.com/woudX/gopower/reflector"
 )
 
 //	ParamMap is a simple package of map[string]interface{}, this struct is purpose to
@@ -39,21 +39,10 @@ func (pm *ParamMap) TryGet(key string, out interface{}) (err error) {
 		}
 	}()
 
-	//	outVal must Ptr
-	outVal := reflect.ValueOf(out)
-	if outVal.Kind() != reflect.Ptr || outVal.IsNil() {
-		return powerr.New("out type must be references value and not nil").StoreKV("kind", outVal.Kind())
-	}
-
 	realVal, exist := pm.innerMap[key]
 	if !exist {
 		return powerr.New("key not exist").StoreKV("key", key)
 	}
 
-	if !outVal.Elem().CanSet() {
-		return powerr.New("out type can't set by reflect.Set()").StoreKV("kind", outVal.Kind())
-	}
-
-	outVal.Elem().Set(reflect.ValueOf(realVal))
-	return nil
+	return reflector.SetVal(realVal, out)
 }

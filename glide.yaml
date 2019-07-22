@@ -13,6 +13,8 @@ ignore:
 excludeDirs:
   - node_modules
 import:
+  - package: github.com/Workiva/go-datastructures
+    version: master
 testImport:
   - package: github.com/stretchr/testify
     version: 1.2.0

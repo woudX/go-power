@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e3a396e-e64d-4d2d-8958-548fb0e8585e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/structure/parammap/parammap.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/structure/set/bloomset.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/structure/set/set.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/structure/set/setif.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/structure/workcluster/interface.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glide.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/glide.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/glide.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflector/function.go" beforeDir="false" afterPath="$PROJECT_DIR$/reflector/function.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/structure/parammap/parammap.go" beforeDir="false" afterPath="$PROJECT_DIR$/structure/parammap/parammap.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/structure/workcluster/workcluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/structure/workcluster/workcluster.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,46 +25,38 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/structure/workcluster/workcluster.go">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/Workiva/go-datastructures/bitarray/iterator.go">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/Workiva/go-datastructures/bitarray/interface.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="86" column="110" selection-start-line="86" selection-start-column="110" selection-end-line="86" selection-end-column="110" />
-              <folding>
-                <element signature="e#21#79#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1386">
+              <caret line="66" column="50" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="252">
-                <caret line="12" column="76" selection-start-line="12" selection-start-column="76" selection-end-line="12" selection-end-column="76" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/Workiva/go-datastructures/bitarray/bitarray.go">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/structure/parammap/parammap.go">
+        <entry file="file://$PROJECT_DIR$/structure/workcluster/interface.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
+            <state relative-caret-position="420">
               <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-              <folding>
-                <element signature="e#18#46#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/runtime/asm_amd64.s">
+        <entry file="file://$PROJECT_DIR$/structure/parammap/parammap.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="508" selection-start-line="508" selection-end-line="508" />
+            <state relative-caret-position="819">
+              <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -65,20 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/reflect/value.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="730" column="35" lean-forward="true" selection-start-line="730" selection-start-column="35" selection-end-line="730" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-              <folding>
-                <element signature="e#14#256#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="15246">
+              <caret line="730" column="35" selection-start-line="730" selection-start-column="35" selection-end-line="730" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -86,22 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/encoding/json/decode.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glide.lock">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glide.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            <state relative-caret-position="3612">
+              <caret line="184" column="65" selection-start-line="184" selection-start-column="65" selection-end-line="184" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -111,6 +84,24 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
               <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/glide.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/structure/set/bloomset.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -147,13 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gp_error/perror.go" />
-        <option value="$PROJECT_DIR$/gp_error/error.go" />
-        <option value="$PROJECT_DIR$/gp_error/error_info.go" />
-        <option value="$PROJECT_DIR$/ttype/basic_type.go" />
-        <option value="$PROJECT_DIR$/ttype/int_type.go" />
-        <option value="$PROJECT_DIR$/reflector/reflector.go" />
-        <option value="$PROJECT_DIR$/gp_reflect/reflector.go" />
         <option value="$PROJECT_DIR$/error/error.go" />
         <option value="$PROJECT_DIR$/ttype/type_basic.go" />
         <option value="$PROJECT_DIR$/ttype/type_int.go" />
@@ -174,7 +158,6 @@
         <option value="$PROJECT_DIR$/container/slice.go" />
         <option value="$PROJECT_DIR$/container/slice_test.go" />
         <option value="$PROJECT_DIR$/container/standard.go" />
-        <option value="$PROJECT_DIR$/glide.yaml" />
         <option value="$PROJECT_DIR$/ttype/value_string.go" />
         <option value="$PROJECT_DIR$/ttype/value_bool.go" />
         <option value="$PROJECT_DIR$/ttype/valueIf.go" />
@@ -191,13 +174,21 @@
         <option value="$PROJECT_DIR$/structure/workcluster/worker.go" />
         <option value="$PROJECT_DIR$/structure/workcluster.go" />
         <option value="$PROJECT_DIR$/GUIDE.md" />
-        <option value="$PROJECT_DIR$/reflector/function.go" />
-        <option value="$PROJECT_DIR$/structure/workcluster/workcluster.go" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/vendor/main.go" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/reflector/function.go" />
         <option value="$PROJECT_DIR$/structure/parammap/parammap.go" />
+        <option value="$PROJECT_DIR$/structure/set/set.go" />
+        <option value="$PROJECT_DIR$/structure/set/fastset.go" />
+        <option value="$PROJECT_DIR$/structure/set/iset.go" />
+        <option value="$PROJECT_DIR$/structure/set/setif.go" />
+        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/glide.lock" />
+        <option value="$PROJECT_DIR$/glide.yaml" />
+        <option value="$PROJECT_DIR$/structure/set/bloomset.go" />
+        <option value="$PROJECT_DIR$/structure/workcluster/interface.go" />
+        <option value="$PROJECT_DIR$/structure/workcluster/workcluster.go" />
       </list>
     </option>
   </component>
@@ -228,7 +219,49 @@
             <path>
               <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
               <item name="gopower" type="462c0819:PsiDirectoryNode" />
-              <item name="ttype" type="462c0819:PsiDirectoryNode" />
+              <item name="structure" type="462c0819:PsiDirectoryNode" />
+              <item name="set" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gopower" type="462c0819:PsiDirectoryNode" />
+              <item name="structure" type="462c0819:PsiDirectoryNode" />
+              <item name="workcluster" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gopower" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gopower" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gopower" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="Workiva" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gopower" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="Workiva" type="462c0819:PsiDirectoryNode" />
+              <item name="go-datastructures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gopower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gopower" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="Workiva" type="462c0819:PsiDirectoryNode" />
+              <item name="go-datastructures" type="462c0819:PsiDirectoryNode" />
+              <item name="bitarray" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -329,12 +362,12 @@
     <frame x="0" y="23" width="1440" height="829" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49445984" visible="true" weight="0.2167382" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49445984" visible="true" weight="0.21959943" />
       <window_info id="Structure" order="1" sideWeight="0.5055402" side_tool="true" weight="0.2167382" />
       <window_info id="Favorites" order="2" sideWeight="0.5055402" side_tool="true" weight="0.2167382" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32825485" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32732317" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32732317" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32732317" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39805827" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -402,13 +435,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Go/src/go/types/type.go" />
-    <entry file="file://C:/Go/src/reflect/type.go" />
-    <entry file="file://C:/Go/src/reflect/value.go" />
-    <entry file="file://C:/Go/src/builtin/builtin.go" />
-    <entry file="file://$PROJECT_DIR$/convert/abbr.go" />
-    <entry file="file://C:/Go/src/runtime/proc.go" />
-    <entry file="file://C:/Go/src/fmt/print.go" />
     <entry file="file://C:/Go/src/runtime/panic.go" />
     <entry file="file://$PROJECT_DIR$/powerr/error.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -594,13 +620,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/structure/workcluster/worker.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/workcluster/worker.go" />
     <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/runtime/panic.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -625,13 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reflector/function.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../golang/go/src/pkg/reflect/value.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -643,57 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glide.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="50" lean-forward="true" selection-end-line="110" />
-          <folding>
-            <element signature="e#14#140#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structure/workcluster/workcluster.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="86" column="110" selection-start-line="86" selection-start-column="110" selection-end-line="86" selection-end-column="110" />
-          <folding>
-            <element signature="e#21#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glide.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/encoding/json/decode.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/reflect/value.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="730" column="35" lean-forward="true" selection-start-line="730" selection-start-column="35" selection-end-line="730" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -714,23 +676,104 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/structure/set/setif.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/set/set.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reflector/function.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+        <state relative-caret-position="378">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding>
             <element signature="e#14#256#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/glide.lock" />
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/Workiva/go-datastructures/bitarray/iterator.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/Workiva/go-datastructures/bitarray/interface.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="66" column="50" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/Workiva/go-datastructures/bitarray/bitarray.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/structure/parammap/parammap.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
+        <state relative-caret-position="819">
+          <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/reflect/value.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15246">
+          <caret line="730" column="35" selection-start-line="730" selection-start-column="35" selection-end-line="730" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go@1.9/1.9.7/libexec/src/encoding/json/decode.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3612">
+          <caret line="184" column="65" selection-start-line="184" selection-start-column="65" selection-end-line="184" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glide.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/set/bloomset.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/workcluster/workcluster.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="232" column="26" selection-start-line="232" selection-start-column="26" selection-end-line="232" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/workcluster/interface.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#18#46#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
