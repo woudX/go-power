@@ -288,6 +288,11 @@ func RemoveFromSlice(sliceObj []interface{}, remObj interface{}) (result []inter
 		result = append(result, sliceObj[lastIdx+1:]...)
 	}
 
+	//	Return empty slice if all removed
+	if result == nil {
+		result = []interface{}{}
+	}
+
 	return result, nil
 }
 

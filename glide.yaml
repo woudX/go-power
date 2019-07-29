@@ -16,7 +16,7 @@ import:
   - package: github.com/Workiva/go-datastructures
     version: master
 testImport:
-  - package: github.com/stretchr/testify
-    version: 1.2.0
-    subpackages:
-      - assert
+#  - package: github.com/stretchr/testify
+#    version: 1.2.0
+#    subpackages:
+#      - assert

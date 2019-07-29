@@ -1,0 +1,25 @@
+hash: 38cb3181a3c246f4ecaa0c003b5be283bbee0bb87abf230eb749c534bd8a8346
+updated: 2019-07-28T17:53:00.2156576+08:00
+imports:
+- name: github.com/davecgh/go-spew
+  version: d8f796af33cc11cb798c1aaeb27a4ebc5099927d
+  subpackages:
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: 5d4384ee4fb2527b0a1256a821ebfc92f91efefc
+  subpackages:
+  - difflib
+- name: github.com/stretchr/objx
+  version: 35313a95ee26395aa17d366c71a2ccf788fa69b6
+- name: github.com/stretchr/testify
+  version: b91bfb9ebec76498946beb6af7c0230c7cc7ba6c
+  subpackages:
+  - assert
+  - http
+  - mock
+  - require
+- name: github.com/Workiva/go-datastructures
+  version: f07cbe3f82ca2fd6e5ab94afce65fe43319f675f
+  subpackages:
+  - bitarray
+testImports: []

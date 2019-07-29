@@ -2,6 +2,7 @@ package container
 
 import (
 	"github.com/stretchr/testify/assert"
+	"github.com/woudX/gopower/convert"
 	"testing"
 )
 
@@ -42,6 +43,105 @@ func TestFindInSliceInterface(t *testing.T) {
 		pos, err := FindInSlice(caseItem.Input, caseItem.Target)
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+func TestFindLastInSlice(t *testing.T) {
+	testCase := []struct {
+		Input  []interface{}
+		Target interface{}
+		Expect int
+	}{
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 22, 3.111},
+			Target: 22,
+			Expect: 9,
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
+			Target: "string-A",
+			Expect: 8,
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: -33,
+			Expect: -1,
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 3.10, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.1,
+			Expect: 8,
+		},
+		{
+			Input:  []interface{}{-3, 544, 3.111, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.111,
+			Expect: 10,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		pos, err := FindLastInSlice(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+func TestFindInSliceIf(t *testing.T) {
+	testCase := []struct {
+		Input  []interface{}
+		Func   ifFunc
+		Expect int
+	}{
+		{
+			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 22, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if intVal, ok := val.(int); ok {
+					return convert.ToInt(intVal%2 == 1)
+				}
+
+				return 0, nil
+			},
+			Expect: 5,
+		},
+		{
+			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if intVal, ok := val.(int); ok {
+					return convert.ToInt(intVal%2 == 0)
+				}
+
+				return 0, nil
+			},
+			Expect: 1,
+		},
+		{
+			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if _, ok := val.(string); ok {
+					return 1, nil
+				}
+
+				return 0, nil
+			},
+			Expect: 4,
+		},
+		{
+			Input: []interface{}{-3, 544, true, 3.10, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if _, ok := val.(float64); ok {
+					return 1, nil
+				}
+
+				return 0, nil
+			},
+			Expect: 3,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		result, err := FindInSliceIf(caseItem.Input, caseItem.Func)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, result)
 	}
 }
 
@@ -207,5 +307,150 @@ func TestFindInSliceFloat64(t *testing.T) {
 		pos, err := FindInSliceFloat64(caseItem.Input, caseItem.Target)
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+func TestRemoveFirstSlice(t *testing.T) {
+	testCase := []struct {
+		Input  []interface{}
+		Target interface{}
+		Expect []interface{}
+	}{
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 22, 3.111},
+			Target: 22,
+			Expect: []interface{}{-3, 544, true, "string-A", 123, "str-B", 3.1, -23.4, 22, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
+			Target: "string-A",
+			Expect:  []interface{}{-3, 544, true, 22,  123, "str-B", 3.1, "string-A", -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: -33,
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 3.10, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.1,
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, 3.111, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.111,
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+		},
+	}
+
+	for _, caseItem := range testCase {
+		newSlice, err := RemoveFirstSlice(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, newSlice)
+	}
+}
+
+
+func TestRemoveFromSliceSlice(t *testing.T) {
+	testCase := []struct {
+		Input  []interface{}
+		Target interface{}
+		Expect []interface{}
+	}{
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 22, 3.111},
+			Target: 22,
+			Expect: []interface{}{-3, 544, true, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
+			Target: "string-A",
+			Expect:  []interface{}{-3, 544, true, 22,  123, "str-B", 3.1, -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: -33,
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, true, 3.10, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.1,
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", -23.4, 3.111},
+		},
+		{
+			Input:  []interface{}{-3, 544, 3.111, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Target: 3.111,
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4},
+		},
+		{
+			Input:  []interface{}{-3, -3, -3, -3, -3, -3},
+			Target: -3,
+			Expect: []interface{}{},
+		},
+	}
+
+	for _, caseItem := range testCase {
+		newSlice, err := RemoveFromSlice(caseItem.Input, caseItem.Target)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, newSlice)
+	}
+}
+
+func TestRemoveFromSliceIf(t *testing.T) {
+	testCase := []struct {
+		Input  []interface{}
+		Func   ifFunc
+		Expect []interface{}
+	}{
+		{
+			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 22, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if intVal, ok := val.(int); ok {
+					return convert.ToInt(intVal%2 == 1)
+				}
+
+				return 0, nil
+			},
+			Expect:[]interface{}{-3, 544, true, 22, "string-A", "str-B", 3.1, -23.4, 22, 3.111},
+		},
+		{
+			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if intVal, ok := val.(int); ok {
+					return convert.ToInt(intVal%2 == 0)
+				}
+
+				return 0, nil
+			},
+			Expect: []interface{}{-3, true, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
+		},
+		{
+			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if _, ok := val.(string); ok {
+					return 1, nil
+				}
+
+				return 0, nil
+			},
+			Expect:  []interface{}{-3, 544, true, 22, 123, 3.1, -23.4, 3.111},
+		},
+		{
+			Input: []interface{}{-3, 544, true, 3.10, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
+			Func: func(val interface{}) (result int, err error) {
+				if _, ok := val.(float64); ok {
+					return 1, nil
+				}
+
+				return 0, nil
+			},
+			Expect: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B"},
+		},
+	}
+
+	for _, caseItem := range testCase {
+		result, err := RemoveFromSliceIf(caseItem.Input, caseItem.Func)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, result)
 	}
 }
