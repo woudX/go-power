@@ -3,6 +3,7 @@ package container
 import (
 	"github.com/stretchr/testify/assert"
 	"github.com/woudX/gopower/convert"
+	"github.com/woudX/gopower/mathex"
 	"testing"
 )
 
@@ -83,6 +84,71 @@ func TestFindLastInSlice(t *testing.T) {
 		pos, err := FindLastInSlice(caseItem.Input, caseItem.Target)
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, pos)
+	}
+}
+
+func TestFindInSliceCmp (t *testing.T) {
+	testCase := []struct {
+		Input       []interface{}
+		CompareFunc func(lVal interface{}, rVal interface{}) (result int, err error)
+		CompareVal  interface{}
+		Expect      interface{}
+	}{
+		{
+			Input: []interface{}{-3, 5, 2, 7 ,11, -4, 3, 2, 2, 11},
+			CompareFunc: func(customVal interface{}, containerVal interface{}) (result int, err error) {
+
+				//	Find larger equal than custom val
+				result, _ = mathex.Compare(containerVal, customVal)
+
+				if result >= 0 {
+					return 1, nil
+				} else {
+					return 0, nil
+				}
+			},
+			CompareVal: 3,
+			Expect: 1,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		result, err := FindInSliceCmp(caseItem.Input, caseItem.CompareVal, caseItem.CompareFunc)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, result)
+	}
+}
+
+
+func TestFindLastInSliceCmp (t *testing.T) {
+	testCase := []struct {
+		Input       []interface{}
+		CompareFunc func(lVal interface{}, rVal interface{}) (result int, err error)
+		CompareVal  interface{}
+		Expect      interface{}
+	}{
+		{
+			Input: []interface{}{-3, 5, 2, 7 ,11, -4, 3, 2, 2, 11},
+			CompareFunc: func(customVal interface{}, containerVal interface{}) (result int, err error) {
+
+				//	Find larger equal than custom val
+				result, _ = mathex.Compare(containerVal, customVal)
+
+				if result >= 0 {
+					return 1, nil
+				} else {
+					return 0, nil
+				}
+			},
+			CompareVal: 3,
+			Expect: 9,
+		},
+	}
+
+	for _, caseItem := range testCase {
+		result, err := FindLastInSliceCmp(caseItem.Input, caseItem.CompareVal, caseItem.CompareFunc)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, result)
 	}
 }
 
@@ -310,7 +376,7 @@ func TestFindInSliceFloat64(t *testing.T) {
 	}
 }
 
-func TestRemoveFirstSlice(t *testing.T) {
+func TestRemoveFromFirstSlice(t *testing.T) {
 	testCase := []struct {
 		Input  []interface{}
 		Target interface{}
@@ -324,7 +390,7 @@ func TestRemoveFirstSlice(t *testing.T) {
 		{
 			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
 			Target: "string-A",
-			Expect:  []interface{}{-3, 544, true, 22,  123, "str-B", 3.1, "string-A", -23.4, 3.111},
+			Expect: []interface{}{-3, 544, true, 22, 123, "str-B", 3.1, "string-A", -23.4, 3.111},
 		},
 		{
 			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
@@ -344,12 +410,11 @@ func TestRemoveFirstSlice(t *testing.T) {
 	}
 
 	for _, caseItem := range testCase {
-		newSlice, err := RemoveFirstSlice(caseItem.Input, caseItem.Target)
+		newSlice, err := RemoveFirstFromSlice(caseItem.Input, caseItem.Target)
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, newSlice)
 	}
 }
-
 
 func TestRemoveFromSliceSlice(t *testing.T) {
 	testCase := []struct {
@@ -365,7 +430,7 @@ func TestRemoveFromSliceSlice(t *testing.T) {
 		{
 			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
 			Target: "string-A",
-			Expect:  []interface{}{-3, 544, true, 22,  123, "str-B", 3.1, -23.4, 3.111},
+			Expect: []interface{}{-3, 544, true, 22, 123, "str-B", 3.1, -23.4, 3.111},
 		},
 		{
 			Input:  []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},
@@ -396,6 +461,38 @@ func TestRemoveFromSliceSlice(t *testing.T) {
 	}
 }
 
+func TestRemoveFromSliceCmp(t *testing.T) {
+	testCase := []struct {
+		Input       []interface{}
+		CompareFunc func(lVal interface{}, rVal interface{}) (result int, err error)
+		CompareVal  interface{}
+		Expect      []interface{}
+	}{
+		{
+			Input: []interface{}{-3, 5, 2, 7 ,11, -4, 3, 2, 2, 11},
+			CompareFunc: func(customVal interface{}, containerVal interface{}) (result int, err error) {
+
+				//	Remove larger equal than custom val
+				result, _ = mathex.Compare(containerVal, customVal)
+
+				if result >= 0 {
+					return 1, nil
+				} else {
+					return 0, nil
+				}
+			},
+			CompareVal: 3,
+			Expect: []interface{}{-3, 2, -4, 2, 2},
+		},
+	}
+
+	for _, caseItem := range testCase {
+		result, err := RemoveFromSliceCmp(caseItem.Input, caseItem.CompareVal, caseItem.CompareFunc)
+		assert.Nil(t, err)
+		assert.Equal(t, caseItem.Expect, result)
+	}
+}
+
 func TestRemoveFromSliceIf(t *testing.T) {
 	testCase := []struct {
 		Input  []interface{}
@@ -411,7 +508,7 @@ func TestRemoveFromSliceIf(t *testing.T) {
 
 				return 0, nil
 			},
-			Expect:[]interface{}{-3, 544, true, 22, "string-A", "str-B", 3.1, -23.4, 22, 3.111},
+			Expect: []interface{}{-3, 544, true, 22, "string-A", "str-B", 3.1, -23.4, 22, 3.111},
 		},
 		{
 			Input: []interface{}{-3, 544, true, 22, "string-A", 123, "str-B", 3.1, "string-A", -23.4, 3.111},
@@ -433,7 +530,7 @@ func TestRemoveFromSliceIf(t *testing.T) {
 
 				return 0, nil
 			},
-			Expect:  []interface{}{-3, 544, true, 22, 123, 3.1, -23.4, 3.111},
+			Expect: []interface{}{-3, 544, true, 22, 123, 3.1, -23.4, 3.111},
 		},
 		{
 			Input: []interface{}{-3, 544, true, 3.10, 22, "string-A", 123, "str-B", 3.1, -23.4, 3.111},

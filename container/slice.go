@@ -103,7 +103,7 @@ func FindLastInSlice(sliceObj []interface{}, findObj interface{}) (pos int, err 
 
 //=========================================SLice Find (Non-Reflect Version)=======================================//
 //	Compare function definition
-type compareFunc func(lVal interface{}, rVal interface{}) (result int, err error)
+type compareFunc func(customVal interface{}, containerVal interface{}) (result int, err error)
 
 //	If function function definition
 type ifFunc func(val interface{}) (result int, err error)
@@ -137,7 +137,7 @@ func _findInSliceCmp(sliceObj []interface{}, startPos int, endPos int, findObj i
 			return pos, err
 		}
 
-		if cmpResult == 0 {
+		if cmpResult != 0 {
 			pos = idx
 			break
 		}
@@ -150,13 +150,13 @@ func _findInSliceCmp(sliceObj []interface{}, startPos int, endPos int, findObj i
 func _findInSliceReverseCmp(sliceObj []interface{}, startPos int, endPos int, findObj interface{}, cmpFuncHdl compareFunc) (pos int, err error) {
 	pos = -1
 	//	Traversal each obj in range and convert to ValueIf, use operator to check equal
-	for idx := startPos; idx < endPos; idx++ {
+	for idx := endPos-1; idx >= startPos; idx-- {
 		cmpResult, err := cmpFuncHdl(findObj, sliceObj[idx])
 		if err != nil {
 			return pos, err
 		}
 
-		if cmpResult == 0 {
+		if cmpResult != 0 {
 			pos = idx
 			break
 		}
@@ -252,7 +252,7 @@ func FindInSliceFloat32(sliceObj []float32, findObj float32) (pos int, err error
 
 //=========================================SLice Remove (Reflect Version)=======================================//
 //	Remove first remObj from slice
-func RemoveFirstSlice(sliceObj []interface{}, remObj interface{}) (result []interface{}, err error) {
+func RemoveFirstFromSlice(sliceObj []interface{}, remObj interface{}) (result []interface{}, err error) {
 	pos, err := _findInSlice(sliceObj, 0, len(sliceObj), remObj)
 	if err != nil {
 		return sliceObj, err
