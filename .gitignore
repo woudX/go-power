@@ -16,5 +16,8 @@ vendor/
 src/
 .idea/
 
-# Main file
+# Remove Main file
 main.go
+
+# Remove Idea
+.idea
