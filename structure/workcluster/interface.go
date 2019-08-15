@@ -7,6 +7,8 @@ type workHandlerFunc func(ctx context.Context, inputData interface{}) (outputDat
 
 //	WorkCluster interface
 type WorkCluster interface {
+	Error() error
+
 	Start(ctx context.Context, workHdl workHandlerFunc) WorkCluster
 	StartR(ctx context.Context, workHdl interface{}) WorkCluster
 

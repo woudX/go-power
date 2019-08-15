@@ -3,12 +3,13 @@ package workcluster
 import (
 	"context"
 	"fmt"
-	"github.com/woudX/gopower/powerr"
-	"github.com/woudX/gopower/reflector"
 	"math/rand"
 	"reflect"
 	"sync"
 	"time"
+
+	"github.com/woudX/gopower/powerr"
+	"github.com/woudX/gopower/reflector"
 )
 
 type PopStatus int
@@ -65,6 +66,11 @@ func NewWorkClusterCustom(workerCount int, chanCache int) WorkCluster {
 	return cluster
 }
 
+//	Error return workCluster running error info
+func (wc *workCluster) Error() error {
+	return wc.Err
+}
+
 //	StartR use reflect package to fill workHdl params and call function handler method
 //	accept a context.context and a custom function handler as input. It should be noted that
 //	[function params] type need equal to [input channel] type, for example:
@@ -83,7 +89,7 @@ func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) WorkClus
 		go func(gid int, inputChan chan interface{}, outputChan chan interface{}, ctrlChan chan int) {
 			defer func() {
 				if r := recover(); r != nil {
-					wc.Err = powerr.New("workCluster panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+					wc.Err = powerr.New("workCluster.StartR panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
 				}
 
 				wc.waiter.Done()
@@ -118,6 +124,14 @@ func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) WorkClus
 
 	//	start goroutine for detect worker finished and close output channel
 	go func() {
+		defer func() {
+			if r := recover(); r != nil {
+				wc.Err = powerr.New("workCluster.StartR panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+			}
+
+			wc.waiter.Done()
+		}()
+
 		wc.waiter.Wait()
 		close(wc.outputChan)
 	}()
@@ -141,7 +155,7 @@ func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) WorkC
 		go func(gid int, inputChan chan interface{}, outputChan chan interface{}, ctrlChan chan int) {
 			defer func() {
 				if r := recover(); r != nil {
-					wc.Err = powerr.New("workCluster panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+					wc.Err = powerr.New("workCluster.Start panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
 				}
 
 				wc.waiter.Done()
@@ -179,6 +193,12 @@ func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) WorkC
 
 //	Push will send inputData to channel, and then processed by worker
 func (wc *workCluster) Push(inputDataList ...interface{}) WorkCluster {
+	defer func() {
+		if r := recover(); r != nil {
+			wc.Err = powerr.New("workCluster.Push panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+		}
+	}()
+
 	for _, data := range inputDataList {
 		randIdx := rand.Intn(wc.workerCount)
 		wc.inputChanList[randIdx] <- data
@@ -189,6 +209,12 @@ func (wc *workCluster) Push(inputDataList ...interface{}) WorkCluster {
 
 //	PushDone close all input channel and finish push
 func (wc *workCluster) PushDone() WorkCluster {
+	defer func() {
+		if r := recover(); r != nil {
+			wc.Err = powerr.New("workCluster.PushDone panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+		}
+	}()
+
 	for idx := range wc.inputChanList {
 		close(wc.inputChanList[idx])
 	}
@@ -205,6 +231,12 @@ func (wc *workCluster) Wait() WorkCluster {
 
 //	PopT return a result from output chan with input blockMillisecond
 func (wc *workCluster) PopT(blockMillisecond int64) (interface{}, PopStatus) {
+	defer func() {
+		if r := recover(); r != nil {
+			wc.Err = powerr.New("workCluster.PopT panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+		}
+	}()
+
 	select {
 	case <-time.After(time.Duration(blockMillisecond) * time.Millisecond):
 		return nil, PopStatusTimeOut
@@ -252,6 +284,12 @@ func (wc *workCluster) PopChan() chan interface{} {
 
 //	Stop the work cluster, all remain data in input chan will lose
 func (wc *workCluster) Stop() WorkCluster {
+	defer func() {
+		if r := recover(); r != nil {
+			wc.Err = powerr.New("workCluster.Stop panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+		}
+	}()
+
 	for idx := range wc.ctrlChanList {
 		close(wc.ctrlChanList[idx])
 	}

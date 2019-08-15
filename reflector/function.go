@@ -22,7 +22,7 @@ func GetFunctionName(funcPtr interface{}) string {
 func SetVal(val interface{}, referenceOut interface{}) error {
 	//	outVal must Ptr
 	outVal := reflect.ValueOf(referenceOut)
-	if outVal.Kind() != reflect.Ptr || outVal.IsNil() {
+	if outVal.IsNil() || outVal.Kind() != reflect.Ptr {
 		return powerr.New("out type must be references value and not nil").StoreKV("kind", outVal.Kind())
 	}
 
