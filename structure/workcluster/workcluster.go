@@ -128,8 +128,6 @@ func (wc *workCluster) StartR(ctx context.Context, workHdl interface{}) WorkClus
 			if r := recover(); r != nil {
 				wc.Err = powerr.New("workCluster.StartR panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
 			}
-
-			wc.waiter.Done()
 		}()
 
 		wc.waiter.Wait()
@@ -184,6 +182,12 @@ func (wc *workCluster) Start(ctx context.Context, workHdl workHandlerFunc) WorkC
 
 	//	start goroutine for detect worker finished and close output channel
 	go func() {
+		defer func() {
+			if r := recover(); r != nil {
+				wc.Err = powerr.New("workCluster.StartR panic occur").StoreKV("panic_info", fmt.Sprintf("%v", r))
+			}
+		}()
+
 		wc.waiter.Wait()
 		close(wc.outputChan)
 	}()
