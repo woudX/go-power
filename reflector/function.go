@@ -19,7 +19,13 @@ func GetFunctionName(funcPtr interface{}) string {
 }
 
 //	SetVal require a val and a referenceOut
-func SetVal(val interface{}, referenceOut interface{}) error {
+func SetVal(val interface{}, referenceOut interface{}) (err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = powerr.New("reflector.SetVal() cause panic").StoreKV("recover_info", r)
+		}
+	}()
+
 	//	outVal must Ptr
 	outVal := reflect.ValueOf(referenceOut)
 	if outVal.IsNil() || outVal.Kind() != reflect.Ptr {

@@ -1,6 +1,7 @@
 package parammap
 
 import (
+	"github.com/woudX/gopower/convert"
 	"github.com/woudX/gopower/powerr"
 	"github.com/woudX/gopower/reflector"
 )
@@ -49,42 +50,61 @@ func (pm *ParamMap) TryGet(key string, out interface{}) (err error) {
 
 //	GetInf return int value in ParamMap
 func (pm *ParamMap) GetInt(key string) (result int, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
+	realVal, exist := pm.innerMap[key]
+	if !exist {
+		return 0, powerr.New("key not exist").StoreKV("key", key)
+	}
+
+	return convert.ToInt(realVal)
 }
 
 //	GetInf return int64 value in ParamMap
 func (pm *ParamMap) GetInt64(key string) (result int64, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
-}
+	realVal, exist := pm.innerMap[key]
+	if !exist {
+		return 0, powerr.New("key not exist").StoreKV("key", key)
+	}
 
-//	GetInf return float32 value in ParamMap
-func (pm *ParamMap) GetFloat32(key string) (result float32, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
+	return convert.ToInt64(realVal)
 }
 
 //	GetInf return float32 value in ParamMap
 func (pm *ParamMap) GetFloat64(key string) (result float64, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
+	realVal, exist := pm.innerMap[key]
+	if !exist {
+		return 0, powerr.New("key not exist").StoreKV("key", key)
+	}
+
+	return convert.ToFloat64(realVal)
+
 }
 
 //	GetInf return string value in ParamMap
 func (pm *ParamMap) GetString(key string) (result string, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
+	realVal, exist := pm.innerMap[key]
+	if !exist {
+		return "", powerr.New("key not exist").StoreKV("key", key)
+	}
+
+	return convert.ToString(realVal)
 }
 
 //	GetInf return bool value in ParamMap
 func (pm *ParamMap) GetBool(key string) (result bool, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
+	realVal, exist := pm.innerMap[key]
+	if !exist {
+		return false, powerr.New("key not exist").StoreKV("key", key)
+	}
+
+	return convert.ToBool(realVal)
 }
 
 //	GetInf return float32 value in ParamMap
 func (pm *ParamMap) GetInterface(key string) (result interface{}, err error) {
-	err = pm.TryGet(key, &result)
-	return result, err
+	realVal, exist := pm.innerMap[key]
+	if !exist {
+		return 0, powerr.New("key not exist").StoreKV("key", key)
+	}
+
+	return realVal, nil
 }
