@@ -48,7 +48,7 @@ func (e *PowError) ErrorWithSep(sep string) string {
 	}
 
 	if len(e.stack) > 0 {
-		msgList = append(msgList, fmt.Sprintf("stack=%v", e.stack))
+		msgList = append(msgList, fmt.Sprintf("stack=%v", string(e.stack)))
 	}
 
 	return strings.Join(msgList, sep)

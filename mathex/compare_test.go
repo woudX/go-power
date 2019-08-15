@@ -1,6 +1,7 @@
 package mathex
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
