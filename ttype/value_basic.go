@@ -1,6 +1,7 @@
 package ttype
 
 import (
+	"github.com/woudX/gopower/constant"
 	"github.com/woudX/gopower/powerr"
 	"github.com/woudX/gopower/reflector"
 )
