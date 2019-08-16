@@ -1,8 +1,6 @@
 Go-Power
 ===
 
-> Lastest version is 0.1.1
-
 A lightweight tools library for golang developer, which provider lots of useful tools to make coding easier, faster and feel more comfortable
 
 It contains :
