@@ -39,6 +39,9 @@ func TestToInt(t *testing.T) {
 		assert.Equal(t, caseItem.Expect, realVal)
 	}
 
+	_, err := ToInt(nil)
+	assert.NotNil(t, err)
+
 }
 
 func TestToInt64(t *testing.T) {
@@ -73,6 +76,9 @@ func TestToInt64(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, realVal)
 	}
+
+	_, err := ToInt64(nil)
+	assert.NotNil(t, err)
 }
 
 func TestToBool(t *testing.T) {
@@ -107,6 +113,9 @@ func TestToBool(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, realVal)
 	}
+
+	_, err := ToBool(nil)
+	assert.NotNil(t, err)
 }
 
 func TestToFloat64(t *testing.T) {
@@ -141,6 +150,9 @@ func TestToFloat64(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, realVal)
 	}
+
+	_, err := ToFloat64(nil)
+	assert.NotNil(t, err)
 }
 
 func TestToString(t *testing.T) {
@@ -175,6 +187,9 @@ func TestToString(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, caseItem.Expect, realVal)
 	}
+
+	_, err := ToString(nil)
+	assert.NotNil(t, err)
 }
 
 func TestToInterfaceSlice(t *testing.T) {
@@ -191,7 +206,7 @@ func TestToInterfaceSlice(t *testing.T) {
 			Expect: []interface{}{1.32, 2.2, float64(3), 44.22, -5123.22},
 		},
 		{
-			Input: []interface{}{"adbs", 123, -23.123, 23323.122556, false},
+			Input:  []interface{}{"adbs", 123, -23.123, 23323.122556, false},
 			Expect: []interface{}{"adbs", 123, -23.123, 23323.122556, false},
 		},
 	}

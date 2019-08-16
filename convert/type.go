@@ -2,11 +2,12 @@ package convert
 
 import (
 	"fmt"
-	"github.com/woudX/gopower/constant"
-	"github.com/woudX/gopower/powerr"
 	"math"
 	"reflect"
 	"strconv"
+
+	"github.com/woudX/gopower/constant"
+	"github.com/woudX/gopower/powerr"
 )
 
 const (
@@ -16,6 +17,10 @@ const (
 
 //	Convert interface to int
 func ToInt(srcData interface{}) (int, error) {
+	if srcData == nil {
+		return 0, powerr.New("ToInt() input is nil")
+	}
+
 	switch reflect.TypeOf(srcData).Kind() {
 	case reflect.Int:
 		return srcData.(int), nil
@@ -68,6 +73,10 @@ func MustToInt(srcData interface{}) int {
 
 //	Convert interface to int64
 func ToInt64(srcData interface{}) (int64, error) {
+	if srcData == nil {
+		return 0, powerr.New("ToInt64() input is nil")
+	}
+
 	switch reflect.TypeOf(srcData).Kind() {
 	case reflect.Int:
 		return int64(srcData.(int)), nil
@@ -119,6 +128,10 @@ func MustToInt64(srcData interface{}) int64 {
 
 //	Convert interface to bool
 func ToBool(srcData interface{}) (bool, error) {
+	if srcData == nil {
+		return false, powerr.New("ToBool() input is nil")
+	}
+
 	switch reflect.TypeOf(srcData).Kind() {
 	case reflect.Int:
 		return (srcData.(int)) != 0, nil
@@ -166,6 +179,10 @@ func MustToBool(srcData interface{}) bool {
 
 //	Convert interface to float64
 func ToFloat64(srcData interface{}) (float64, error) {
+	if srcData == nil {
+		return 0, powerr.New("ToFloat64() input is nil")
+	}
+
 	switch reflect.TypeOf(srcData).Kind() {
 	case reflect.Int:
 		return float64(srcData.(int)), nil
@@ -217,6 +234,10 @@ func MustToFloat64(srcData interface{}) float64 {
 
 //	Convert interface to string
 func ToString(srcData interface{}) (string, error) {
+	if srcData == nil {
+		return "", powerr.New("ToString() input is nil")
+	}
+
 	switch reflect.TypeOf(srcData).Kind() {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64, reflect.Uint, reflect.Uint8,
 		reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Float32, reflect.Float64, reflect.Bool, reflect.String:
@@ -235,6 +256,10 @@ func MustToString(srcData interface{}) string {
 
 //	Convert interface to interface list, this function only works on slice
 func ToInterfaceSlice(srcData interface{}) ([]interface{}, error) {
+	if srcData == nil {
+		return nil, powerr.New("ToInterfaceSlice() input is nil")
+	}
+
 	if reflect.TypeOf(srcData).Kind() != reflect.Slice {
 		return nil, powerr.New(powerr.ErrNotSupportConvert).StoreKV(FromType, reflect.TypeOf(srcData).Kind()).
 			StoreKV(ToType, reflect.Slice)
